@@ -1,0 +1,45 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R13",
+  "reference": "Rule 13",
+  "title": "Statement of units of weight, measure or number",
+  "less_than_threshold": {
+    "1kg": "g",
+    "1m": "cm",
+    "1m2": "dm2",
+    "1m3": "cm3",
+    "1dm3": "cm3",
+    "1litre": "ml"
+  },
+  "equal_or_more_than_threshold": {
+    "1kg": "kg_or_fraction_in_decimal_submultiple_or_g",
+    "1m": "m_or_fraction_in_decimal_submultiple_or_cm",
+    "1m2": "m2_or_fraction_in_decimal_submultiple",
+    "1m3": "m3_or_fraction_in_decimal_submultiple",
+    "1litre": "litre_or_fraction_in_decimal_submultiple"
+  },
+  "exact_one_option": "At exactly 1 kg, 1 m, 1 m2, 1 dm3, 1 m3 or 1 litre, alternative lower/sub units listed in the rule may be used at the option of manufacturer/packer/importer.",
+  "prohibited_number_words": [
+    "dozen",
+    "score",
+    "gross",
+    "great gross"
+  ],
+  "system_requirement": "Use International System of Units for net quantity.",
+  "sold_by_number_symbols": [
+    "N",
+    "U"
+  ],
+  "input_fields": [
+    "product.net_quantity.value",
+    "product.net_quantity.unit",
+    "product.net_quantity.measurement_type",
+    "product.net_quantity.raw_text"
+  ]
+}

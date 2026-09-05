@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R15",
+  "reference": "Rule 15",
+  "title": "Declaration with regard to dimensions and weight to be made on packages in",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R15_COMPLIANCE",
+      "reference": "Rule 15",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "15. Declaration with regard to dimensions and weight to be made on packages in\ncertain cases.-\nWhere the dimensions and weight, or combination thereof, of a commodity has or have a\nrelationship to the price of that commodity, the declaration of quantity on the package\ncontaining such commodity, shall also include a declaration as to such dimensions,\nweight or combination."
+}

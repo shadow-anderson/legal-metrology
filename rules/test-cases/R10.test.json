@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Complete manufacturer address",
+    "input": {
+      "manufacturer": {
+        "name": "ABC Pvt Ltd",
+        "address": {
+          "street": "Industrial Area",
+          "city": "Delhi",
+          "state": "Delhi",
+          "pin": "110001"
+        }
+      }
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Name present but no locatable address",
+    "input": {
+      "manufacturer": {
+        "name": "ABC Pvt Ltd",
+        "address": {}
+      }
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Tiny package identifying mark",
+    "input": {
+      "package_capacity_cm3": 4,
+      "identifying_mark_present": true
+    },
+    "expected": "PASS"
+  }
+]

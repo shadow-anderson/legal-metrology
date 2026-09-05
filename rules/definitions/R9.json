@@ -1,0 +1,65 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R9",
+  "reference": "Rule 9",
+  "title": "Manner in which declaration shall be made",
+  "checks": [
+    {
+      "id": "R9_1_A",
+      "requirement": "Declaration must be legible and prominent",
+      "fields": [
+        "analysis.legible",
+        "analysis.prominent"
+      ]
+    },
+    {
+      "id": "R9_1_B",
+      "requirement": "MRP and net quantity numerals must conspicuously contrast with background",
+      "fields": [
+        "analysis.mrp_contrast",
+        "analysis.net_quantity_contrast"
+      ],
+      "exceptions": [
+        "blown_formed_molded_on_glass_or_plastic"
+      ]
+    },
+    {
+      "id": "R9_1_HAND",
+      "requirement": "Hand-written or hand-script declaration must be clear, unambiguous and legible",
+      "conditional": true
+    },
+    {
+      "id": "R9_2",
+      "requirement": "Declaration must not require reading through liquid commodity",
+      "field": "analysis.read_through_liquid"
+    },
+    {
+      "id": "R9_3",
+      "requirement": "Outside wrapper/container must also carry required declarations unless transparent and inner declarations are easily readable",
+      "conditional": true
+    },
+    {
+      "id": "R9_4",
+      "requirement": "Required declaration particulars must be in Hindi (Devanagari) or English; additional languages allowed",
+      "field": "analysis.languages"
+    }
+  ],
+  "input_fields": [
+    "analysis.legible",
+    "analysis.prominent",
+    "analysis.mrp_contrast",
+    "analysis.net_quantity_contrast",
+    "analysis.declaration_style",
+    "analysis.read_through_liquid",
+    "package.has_outer_wrapper",
+    "package.outer_wrapper_transparent",
+    "analysis.inner_declarations_readable",
+    "analysis.languages"
+  ]
+}

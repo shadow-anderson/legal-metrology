@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R34",
+  "reference": "Rule 34",
+  "title": "Repeal and savings.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R34_COMPLIANCE",
+      "reference": "Rule 34",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "34. Repeal and savings.-\n\n\n\n\n\n(1) The Standards of Weights and Measures (Packaged Commodities) Rules, 1977 are\nhereby repealed.\nProvided that such repeal shall not affect:\n(a) the previous operations of the said rules or anything done or omitted to be done or\nsuffered therein; or\n(b) any right, privilege, obligation or liability acquired, accrued or incurred under the said\nrules; or\n(c) any penalty, forfeiture or punishment incurred in respect of any offence committed\nagainst the said rules; or\n(d) any investigation, legal proceedings or remedy in respect of any such right, privilege,\nobligation, liability, penalty, forfeiture or punishment as aforesaid.\nAnd any such investigation, legal proceedings or remedy may be instituted, continued or\nenforced and any such penalty, forfeiture or punishment may be imposed as if the said\nrules had not been rescinded.\n(2) Notwithstanding such repeal anything done or any action taken or purported to have\nbeen done or taken including approval of letter, exemption granted, fees collected, any\nadjudication, enquiry or investigation commenced, license and registration of\nmanufacturers, dealers, importers of pre-packaged commodities, or show cause notice,\ndecision, determination, approval, authorization issued, given or done under the said rules\nshall if in force at the commencement of the said rules continue to be in force and have\neffect as if issued, given or done under the corresponding provisions of these rules.\n(3) The provisions of these rules shall apply to any application made to the Central\nGovernment or as the case may be the State Government under the said rules for licence,\nregistration of manufacturers, importers, dealers of pre-packaged commodities pending at\nthe commencement of these rules and to any proceedings consequent thereon and to any\nregistration granted in pursuance thereof.\n(4) Any legal proceeding pending in any court under the said rules at the commencement\nof these rules may be continued in that court as if these rules had not been framed.\n(5) Any appeal preferred to the Central Government or as the case may be the State\nGovernment under the said rules and pending shall be deemed to have been made under\nthe corresponding provisions of these rules."
+}

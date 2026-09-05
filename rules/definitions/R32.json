@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R32",
+  "reference": "Rule 32",
+  "title": "Penalty for contravention of Rules",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R32_COMPLIANCE",
+      "reference": "Rule 32",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "32. Penalty for contravention of Rules\n(1) Whoever contravenes the provisions of rules 27 to 31, he shall be punished with fine\nof four thousand rupees.\n(2) Whoever contravenes any other provision of these rules, for the contravention of\nwhich no punishment has been provided either in the Act or in the rules he shall be\npunished with fine of two thousand rupees."
+}

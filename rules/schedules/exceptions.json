@@ -1,0 +1,76 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "purpose": "Central place for exception and applicability flags used by the rule engine.",
+  "exceptions": [
+    {
+      "id": "EX_R3_01",
+      "reference": "Rule 3",
+      "condition": "quantity > 25 kg or 25 litre",
+      "result": "NOT_APPLICABLE",
+      "except_when": [
+        "cement in bags up to 50 kg",
+        "fertilizer in bags up to 50 kg"
+      ]
+    },
+    {
+      "id": "EX_R3_02",
+      "reference": "Rule 3",
+      "condition": "industrial consumer",
+      "result": "NOT_APPLICABLE"
+    },
+    {
+      "id": "EX_R3_03",
+      "reference": "Rule 3",
+      "condition": "institutional consumer",
+      "result": "NOT_APPLICABLE"
+    },
+    {
+      "id": "EX_R6_DATE_01",
+      "reference": "Rule 6(1)(d)",
+      "condition": "package contains bidi or incense sticks",
+      "effect": "month_year_not_required"
+    },
+    {
+      "id": "EX_R6_MRP_01",
+      "reference": "Rule 6(1)(e)",
+      "condition": "package contains bidi",
+      "effect": "retail_sale_price_not_required"
+    },
+    {
+      "id": "EX_R6_MRP_02",
+      "reference": "Rule 6(1)(e)",
+      "condition": "domestic LPG cylinder under Administrative Price Mechanism",
+      "effect": "retail_sale_price_not_required"
+    },
+    {
+      "id": "EX_R7_01",
+      "reference": "Rule 7(4)",
+      "condition": "same information required under another law",
+      "effect": "rule_7_subrules_1_to_3_not_apply"
+    },
+    {
+      "id": "EX_R9_01",
+      "reference": "Rule 9(1)(b)",
+      "condition": "label information blown, formed or molded on glass/plastic",
+      "effect": "contrast_not_required"
+    },
+    {
+      "id": "EX_R10_01",
+      "reference": "Rule 10(1)",
+      "condition": "package capacity <= 5 cubic cm",
+      "effect": "identifying_mark_or_inscription_sufficient"
+    },
+    {
+      "id": "EX_R12_01",
+      "reference": "Rule 12(2)",
+      "condition": "commodity appears in Fourth Schedule",
+      "effect": "apply_schedule_mapping"
+    }
+  ]
+}

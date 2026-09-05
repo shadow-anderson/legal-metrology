@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 17 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 17: Declarations with regard to the dimensions of container type commodities.--"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 17 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 17 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 17 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

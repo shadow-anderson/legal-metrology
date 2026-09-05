@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Normal retail biscuit",
+    "input": {
+      "product": {
+        "commodity_name": "Biscuits",
+        "net_quantity": {
+          "value": 500,
+          "unit": "g"
+        },
+        "is_industrial_consumer": false,
+        "is_institutional_consumer": false
+      }
+    },
+    "expected": "APPLICABLE"
+  },
+  {
+    "name": "30 kg general commodity",
+    "input": {
+      "product": {
+        "commodity_name": "General commodity",
+        "net_quantity": {
+          "value": 30,
+          "unit": "kg"
+        }
+      }
+    },
+    "expected": "NOT_APPLICABLE"
+  },
+  {
+    "name": "40 kg cement bag",
+    "input": {
+      "product": {
+        "commodity_name": "Cement",
+        "net_quantity": {
+          "value": 40,
+          "unit": "kg"
+        }
+      }
+    },
+    "expected": "APPLICABLE"
+  },
+  {
+    "name": "Industrial consumer",
+    "input": {
+      "product": {
+        "is_industrial_consumer": true
+      }
+    },
+    "expected": "NOT_APPLICABLE"
+  }
+]

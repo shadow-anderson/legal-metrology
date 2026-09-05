@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 11 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 11: General provisions relating to declaration of quantity.—"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 11 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 11 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 11 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

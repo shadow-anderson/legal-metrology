@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R14",
+  "reference": "Rule 14",
+  "title": "Declarations with regard to dimensions of certain commodities.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R14_COMPLIANCE",
+      "reference": "Rule 14",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "14. Declarations with regard to dimensions of certain commodities.-\nWhere a package contains commodities like bed-sheets, hemmed fabric materials,\ndhoties, sarees, napkins, pillow-covers, towels, table cloths or similar other commodities,\nthe number and the dimensions of finished size of such commodities shall also be\ndeclared on the package or on the label affixed thereto:\nProvided that where the package contains more than one piece of different dimensions,\nthe package shall also contain a declaration as to the dimensions and the retail sale price\nof each such piece:\nProvided further that the dimensions of the commodities and the sale price thereof shall\nalso be marked on each individual piece."
+}

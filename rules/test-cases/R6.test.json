@@ -1,0 +1,36 @@
+[
+  {
+    "name": "All core declarations present",
+    "input": {
+      "manufacturer": true,
+      "commodity_name": true,
+      "net_quantity": true,
+      "month_year": true,
+      "retail_sale_price": true,
+      "consumer_care": true
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "MRP missing",
+    "input": {
+      "manufacturer": true,
+      "commodity_name": true,
+      "net_quantity": true,
+      "month_year": true,
+      "retail_sale_price": false,
+      "consumer_care": true
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Low OCR confidence",
+    "input": {
+      "net_quantity": {
+        "value": null,
+        "confidence": 0.35
+      }
+    },
+    "expected": "VERIFY"
+  }
+]

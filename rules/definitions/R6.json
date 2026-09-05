@@ -1,0 +1,89 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R6",
+  "reference": "Rule 6",
+  "title": "Declarations to be made on every package",
+  "checks": [
+    {
+      "id": "R6_1_A",
+      "reference": "Rule 6(1)(a)",
+      "field": "manufacturer/packer/importer",
+      "requirement": "Name and address according to manufacturer, packer and import status",
+      "required": true
+    },
+    {
+      "id": "R6_1_B",
+      "reference": "Rule 6(1)(b)",
+      "field": "commodity_name",
+      "requirement": "Common or generic commodity name; for multiple products, name and number/quantity of each",
+      "required": true
+    },
+    {
+      "id": "R6_1_C",
+      "reference": "Rule 6(1)(c)",
+      "field": "net_quantity",
+      "requirement": "Net quantity in standard unit, or number when sold by number",
+      "required": true
+    },
+    {
+      "id": "R6_1_D",
+      "reference": "Rule 6(1)(d)",
+      "field": "month_year",
+      "requirement": "Month and year of manufacture, pre-packing or import, subject to stated exceptions",
+      "required": true,
+      "exceptions": [
+        "bidi",
+        "incense_sticks",
+        "eligible_14_2kg_or_5kg_domestic_lpg_public_sector",
+        "food_articles_external_law",
+        "certified_seeds_external_law",
+        "cosmetics_external_law"
+      ]
+    },
+    {
+      "id": "R6_1_E",
+      "reference": "Rule 6(1)(e)",
+      "field": "retail_sale_price",
+      "requirement": "Retail sale price, subject to stated exceptions",
+      "required": true,
+      "exceptions": [
+        "bidi",
+        "domestic_lpg_under_administrative_price_mechanism",
+        "state_excise_covered_alcoholic_beverage"
+      ]
+    },
+    {
+      "id": "R6_1_F",
+      "reference": "Rule 6(1)(f)",
+      "field": "dimensions",
+      "requirement": "Dimensions when size is relevant; dimensions of each different piece where relevant",
+      "required": "CONDITIONAL"
+    },
+    {
+      "id": "R6_2",
+      "reference": "Rule 6(2)",
+      "field": "consumer_care",
+      "requirement": "Name, address, telephone number and email if available of complaint contact person/office",
+      "required": true
+    }
+  ],
+  "input_fields": [
+    "product.commodity_name",
+    "product.is_imported",
+    "product.is_food_article",
+    "product.manufacturer",
+    "product.packer",
+    "product.importer",
+    "product.net_quantity",
+    "product.month_year",
+    "product.retail_sale_price",
+    "product.dimensions",
+    "product.consumer_care"
+  ]
+}

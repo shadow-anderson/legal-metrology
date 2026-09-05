@@ -1,0 +1,118 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "schedule": "Fourth Schedule",
+  "reference": "Rule 12(2)",
+  "purpose": "Exceptions to default Rule 12 measurement-type mapping.",
+  "entries": [
+    {
+      "commodity": "Aerosol products",
+      "allowed_declaration": "WEIGHT"
+    },
+    {
+      "commodity": "Acids in liquid form",
+      "allowed_declaration": "WEIGHT_OR_VOLUME"
+    },
+    {
+      "commodity": "Compressed or liquefied gas (not LPG)",
+      "allowed_declaration": "WEIGHT_AND_EQUIVALENT_VOLUME_AT_STATED_TEMPERATURE_AND_PRESSURE"
+    },
+    {
+      "commodity": "Curd",
+      "allowed_declaration": "WEIGHT"
+    },
+    {
+      "commodity": "Electric cables",
+      "allowed_declaration": "LENGTH_OR_WEIGHT"
+    },
+    {
+      "commodity": "Electric wire",
+      "allowed_declaration": "LENGTH_OR_WEIGHT"
+    },
+    {
+      "commodity": "Fencing wire",
+      "allowed_declaration": "NUMBER_OR_WEIGHT"
+    },
+    {
+      "commodity": "Fruits, all kinds",
+      "allowed_declaration": "NUMBER_OR_WEIGHT"
+    },
+    {
+      "commodity": "Furnace oil",
+      "allowed_declaration": "WEIGHT_OR_VOLUME"
+    },
+    {
+      "commodity": "Non-edible vegetable oil",
+      "allowed_declaration": "WEIGHT_OR_VOLUME"
+    },
+    {
+      "commodity": "Edible oil, Vanaspati, ghee and butter oil",
+      "allowed_declaration": "WEIGHT_OR_VOLUME"
+    },
+    {
+      "commodity": "Heavy residual fuel oil",
+      "allowed_declaration": "WEIGHT"
+    },
+    {
+      "commodity": "Industrial diesel fuel",
+      "allowed_declaration": "VOLUME"
+    },
+    {
+      "commodity": "Honey, malt-extract, golden syrup, treacle",
+      "allowed_declaration": "WEIGHT"
+    },
+    {
+      "commodity": "Ice cream and similar frozen products",
+      "allowed_declaration": "VOLUME"
+    },
+    {
+      "commodity": "Liquid chemicals",
+      "allowed_declaration": "WEIGHT_OR_VOLUME"
+    },
+    {
+      "commodity": "Liquefied petroleum gas",
+      "allowed_declaration": "WEIGHT"
+    },
+    {
+      "commodity": "Nails, wood screws",
+      "allowed_declaration": "NUMBER_OR_WEIGHT"
+    },
+    {
+      "commodity": "Paints other than paste/solid paint, varnish, varnish stains, enamels",
+      "allowed_declaration": "VOLUME"
+    },
+    {
+      "commodity": "Paste paint, solid paint",
+      "allowed_declaration": "WEIGHT"
+    },
+    {
+      "commodity": "Rasgulla, Gulabjamun and other sweet preparations",
+      "allowed_declaration": "WEIGHT"
+    },
+    {
+      "commodity": "Ready-made garments",
+      "allowed_declaration": "NUMBER"
+    },
+    {
+      "commodity": "Sauces, all kinds",
+      "allowed_declaration": "WEIGHT"
+    },
+    {
+      "commodity": "Tyres and tubes",
+      "allowed_declaration": "NUMBER"
+    },
+    {
+      "commodity": "Yarn",
+      "allowed_declaration": "WEIGHT_OR_LENGTH"
+    },
+    {
+      "commodity": "Cosmetics including creams, shampoo, lotions and perfumes",
+      "allowed_declaration": "WEIGHT_OR_MEASURE"
+    }
+  ]
+}

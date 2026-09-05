@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R22",
+  "reference": "Rule 22",
+  "title": "Establishment of maximum permissible error on package.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R22_COMPLIANCE",
+      "reference": "Rule 22",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "22. Establishment of maximum permissible error on package.-\n(1) The maximum permissible error in relation to the commodities shall be such as is\nindicated in the First Schedule.\n(2) While establishing the maximum permissible error in relation to the net quantity of\ncommodities contained in packages, due account shall be taken of the following causes\nwhich may lead to variation in quantity, namely:-\n\n\n\n\n\n(a) variations caused by unavoidable deviation in weighing, measuring or counting the\ncontents of individual packages that may occur in good packaging practice;\n(b) variations caused by the ordinary and customary exposure to conditions, such as,\nclimate, transport, storage or the like that normally occur in good distribution practice\nafter the commodity is introduced in trade or commerce; and\n(c) variations due to the nature of packaging material or container.\n(3) The Director or Controller or the Legal Metrology officer shall determine, or cause to\nbe determined, in relation to any commodity, the declaration in respect of the net quantity\nof which is permitted to be qualified by the words 'when packed'; the reasonable\nvariations which may take place by reason of the environmental conditions."
+}

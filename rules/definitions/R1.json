@@ -1,0 +1,23 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R1",
+  "reference": "Rule 1",
+  "title": "Short title and Commencement.",
+  "purpose": "Rule metadata / definitions used as reference by the rule engine.",
+  "checks": [
+    {
+      "id": "R1_COMPLIANCE",
+      "reference": "Rule 1",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [],
+  "source_text": "1. Short title and Commencement.-\n(1)These rules may be called The Legal Metrology (Packaged Commodities) Rules,\n2011.\n(2) They shall come into force on the 1st day of April, 2011."
+}

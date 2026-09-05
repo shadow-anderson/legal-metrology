@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R19",
+  "reference": "Rule 19",
+  "title": "Inspection of quantity and error in packages at the premises of the",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R19_COMPLIANCE",
+      "reference": "Rule 19",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "19. Inspection of quantity and error in packages at the premises of the\nmanufacturer or packer.—\n(1) With a view to ascertaining whether any package or lot of packages complies with\nprovisions of these rules in all respects, the Director, Controller or any Legal Metrology\nOfficer empowered to inspect under section 15 of the Act (hereafter referred to as in\nthese rules as the “authorized person”) may examine the packages and carry out the tests\nat the premises of the manufacturer or where the manufacturer is not the packer, of the\npacker and when he carries out such examination or tests, he shall draw samples from\nsuch lot of packages, in such manner and in such number as are specified in the Fifth\nSchedule and the tests aforesaid shall be carried out in accordance with the method\nspecified in the Sixth Schedule.\n(2) The Director, Controller or any Legal Metrology Officer shall enter in the Form set\nout in the Seventh Schedule, the detailed results of the tests carried out by him under sub-\nrule (1) and shall obtain, on the said Form, the signature of the manufacturer or, as the\ncase may be, of the packer, or his authorized agent, or, in the absence of both, or on their\nrefusal to affix such signature, the signature of a competent witness and copy of the data\nsheet containing the result shall be given to the manufacturer or packer, as the case may\nbe.\n\n\n\n\n(3) On the completion of the examination and tests carried out under sub-rule (1), the\nDirector, Controller or any Legal Metrology Officer shall make a report indicating\ntherein his findings with regard to the declarations required to be made under these rules\nand as to the net quantity actually contained in the sample packages and the extent of\nerror, if any, noticed by him and furnish a copy of such report to the manufacturer or the\npacker, as the case may be.\n(4) If it appears from the report referred to in sub-rule (3) that-\n(a) the statistical average of the net quantity contained in the packages drawn as samples\nis lesser than the quantity declared on the packages or on the labels affixed thereto; or\n(b) any such package shows an error in deficiency greater than the maximum permissible\nerror, the Director, Controller or any Legal Metrology Officer shall, if for good and\nsufficient reason, requested by the manufacturer or packer or his authorized agent, so to\ndo, take out as soon as may be practicable, fresh samples and carry out fresh tests in\naccordance with the provisions of these rules and where fresh tests are made, the\nDirector, Controller or any Legal Metrology Officer, as the case may be, shall collect a\nfee of rupees two thousand five hundred for carrying out fresh test.\nProvided that where fresh tests are carried out, no package contained in the lot, which\nwas previously tested under this rule, shall be sold or distributed by the manufacturer or\npacker, as the case may be, unless the provisions of the sub-rule (5) or as the case may\nbe, sub-rule (6), are complied with.\n(5)(a) where, as a result of any test carried out under this rule, it is found that any package\ncontained in the lot does not conform to all or any of the provisions of the Act or of these\nrules, the manufacturer or the packer shall make a cent per cent check of the packages\ncontained in the lot and pick out from the lot the packages which conform to all the\nprovisions of the Act and of these rules.\n(b) When the Director, Controller or any Legal Metrology Officer is satisfied that the\npackages picked out by the manufacturer or packer conforms to all the provisions of the\nAct and of these rules, he shall authorize the sale, distribution or delivery of such\npackages.\n(c) Where, as a result of such cent per cent check by the manufacturer or packer, any\npackage is found to be not conforming to all or any or of the provisions of the Act or of\n\n\n\n\nthese rules, such package shall not be sold, distributed or delivered until it has been re-\npacked, re-processed or relabeled, as the case may be, in accordance with the provisions\nof the Act and of these rules.\n(6) A lot of packages shall be approved for sale if, and only if, as a result of the tests\ncarried out under this rule, it is found that-\n(a) the statistical average of the net quantity contained in the sample packages is equal to,\nor more than, the quantity declared on the package or on the label affixed thereto.\n(b) the extent of error in deficiency in none of such sample packages exceeds the\nmaximum permissible error.\n(c) each such package bears thereon or on a label affixed thereto- the declarations\nrequired to be made under these rules.\n(7) The requirement of mandatory declarations on the packages shall be ensured either at\nthe factory level or at the depot of the factory.\n(8) For non-compliance of the provisions of this rule, action may be taken after seizing\nfive representative samples of the packages as evidence and the rest of the packages may\nbe released *(once compliance is ensured) by the manufacturer or the packer, as the case\nmay be.\n* Provision will stand amended wef 01.07.2012 vide GSR 748(E) dated 24.10.2011. The\nwords within parenthesis will be replaced by “only after the compliance is completed”."
+}

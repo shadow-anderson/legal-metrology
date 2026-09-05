@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R20",
+  "reference": "Rule 20",
+  "title": "Action to be taken on completion of inspection of packages at the premises of the",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R20_COMPLIANCE",
+      "reference": "Rule 20",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "20. Action to be taken on completion of inspection of packages at the premises of the\nmanufacturer or the packer.-\n(1) If it appears from the report referred to in sub-rule (3) of rule 19 that,-\n(a) the statistical average of the net quantity contained in the packages drawn as samples\nunder that rule is lesser than the quantity declared on the packages or on the labels affixed\nthereto, or any such package shows an error in deficiency greater than the maximum\npermissible error, or\n(b) any such package does not bear thereon or on label affixed thereto the declarations to\nbe made under these rules, the Director, Controller or any Legal Metrology Officer shall\ntake action the following action, namely:-\n\n\n\n\n\n(i) seize the packages drawn by him as samples and shall take adequate steps for the safe\ncustody of the seized packages until they are produced in the appropriate court as\nevidence;\n(ii) based on the evidence initiate action for violations of the provisions of the Act and\nthese rules:\nProvided that no such action shall be taken if fresh tests are carried out under sub-rule (4)\nof rule 19, but if after such fresh tests any such error or omission as is referred to in this\nsub-rule is detected, the Director, Controller or any Legal Metrology Officer shall take\nappropriate action as specified in this sub-rule in accordance with the provisions of the\nAct against the manufacturer or, as the case may be, the packer.\n\n\n(2) The disposal of the seized packages shall be made in accordance with the provisions\nof the Code of Criminal Procedure, 1973 (2 of 1974)."
+}

@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R17",
+  "reference": "Rule 17",
+  "title": "Declarations with regard to the dimensions of container type commodities.-",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R17_COMPLIANCE",
+      "reference": "Rule 17",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "17. Declarations with regard to the dimensions of container type commodities.--\nThe commodities shall be expressed as bags, boxes, cups, pans or the like designed and\nsold in retail trade for being used as containers for other materials or objects and shall be\nlabeled with the declaration of quantity as follows.--\n(i) for bag-type commodities, the number of bags which the package may contain,\nfollowed by linear dimensions of the bags, whether packaged in a perforated roll or\notherwise;\n(ii) for square, oblong, rectangular or similarly shaped containers, the number of\ncontainers which the package may contain, followed by length, width, and if required,\ndepth of the container.\n(iii) for circular or generally round-shaped containers, not being cups or the like the\nnumber of commodities contained therein followed by diameter and, if necessary, depth\nof the container.\n(iv) when the use of a container is related by label references, the standard weight or\nmeasure, to the capability of the container to hold a specific quantity of commodity or a\nclass of commodities such references shall be included in the declaration of quantity."
+}

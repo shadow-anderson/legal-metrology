@@ -1,0 +1,27 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R29",
+  "reference": "Rule 29",
+  "title": "Registration of manufacturers and packers, etc.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R29_COMPLIANCE",
+      "reference": "Rule 29",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "registration",
+    "entity",
+    "application"
+  ],
+  "source_text": "29. Registration of manufacturers and packers, etc.-\n(1) The Director or the Controller shall enter in a register, to be maintained by him for the\npurpose, the name and complete address of each manufacturer or packer by whom\napplication for such registration has been made to him under rule 27.\n\n\n\n\n\n(2)The register referred to in sub-rule (1) shall be open to the inspection of the public\nwithout payment of any fee."
+}

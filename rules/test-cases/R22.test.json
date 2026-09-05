@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 22 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 22: Establishment of maximum permissible error on package.-"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 22 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 22 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 22 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

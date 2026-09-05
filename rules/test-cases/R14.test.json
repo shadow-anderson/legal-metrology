@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 14 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 14: Declarations with regard to dimensions of certain commodities.-"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 14 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 14 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 14 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R8",
+  "reference": "Rule 8",
+  "title": "Declaration where to appear",
+  "checks": [
+    {
+      "id": "R8_1",
+      "requirement": "Every required declaration appears on the principal display panel",
+      "field": "declaration.on_principal_display_panel"
+    },
+    {
+      "id": "R8_2_TOP_BOTTOM",
+      "requirement": "Clear space above and below quantity declaration is at least numeral height",
+      "formula": "clearance_top >= numeral_height AND clearance_bottom >= numeral_height"
+    },
+    {
+      "id": "R8_2_LEFT_RIGHT",
+      "requirement": "Clear space left and right is at least twice numeral height",
+      "formula": "clearance_left >= 2*numeral_height AND clearance_right >= 2*numeral_height"
+    }
+  ],
+  "special_case": {
+    "returnable_soft_drink_or_ready_to_serve_beverage": "MRP may appear on crown cap, bottle, or both; MRP Rs... form is sufficient."
+  },
+  "input_fields": [
+    "declarations[].on_principal_display_panel",
+    "measurements.quantity_numeral_height_mm",
+    "measurements.quantity_clearance"
+  ]
+}

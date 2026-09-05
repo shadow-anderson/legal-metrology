@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 1 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 1: Short title and Commencement.-"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 1 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 1 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 1 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

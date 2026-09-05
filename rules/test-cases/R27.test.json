@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 27 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 27: Registration of manufacturers, packers and importers.-"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 27 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 27 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 27 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

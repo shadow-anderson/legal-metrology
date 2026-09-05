@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R18",
+  "reference": "Rule 18",
+  "title": "Provisions relating to wholesale dealer and retail dealers.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R18_COMPLIANCE",
+      "reference": "Rule 18",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "18. Provisions relating to wholesale dealer and retail dealers.-\n(1) No wholesale dealer or retail dealer or importer shall sell, distribute, deliver, display\nor store for sale any commodity in the packaged form unless the package complies with\nin all respects, the provisions of the Act and these rules.\n(2) No retail dealer or other person including manufacturer, packer, importer and\nwholesale dealer shall make any sale of any commodity in packed form at a price\nexceeding the retail sale price thereof.\n(3) Where, after any commodity has been pre-packed for sale, any tax payable in relation\nto such commodity is revised, the retail dealer or any other person shall not make any\nretail sale of such commodity at a price exceeding the revised retail sale price,\ncommunicated to him by the manufacturer, or where the manufacturer is not the packer,\nthe packer, and it shall be, the duty of the manufacturer or packer as the case may be, to\nindicate by not less than two advertisements in one or more newspapers and also by\ncirculation of notices to the dealers and to the Director in the Central Government and\nControllers of Legal Metrology in the States and Union Territories, the revised prices of\nsuch packages but the difference between the price marked on the package and the\nrevised price shall not, in any case, be higher than the extent of increase in the tax or in\nthe case of imposition of fresh tax higher than the fresh tax so imposed:\nProvided that publication in any newspaper, of such revised price shall not be necessary\nwhere such revision is due to any increase in, or imposition or, any tax payable under any\nlaw made by the State Legislation:\nProvided further that the retail dealer or other person, shall not charge such revised prices\nin relation to any packages except those packages which bear marking indicating that\nthey were pre-packed in the month in which such tax has been revised or fresh tax has\nbeen imposed or in the month immediately following the month aforesaid;\nProvided also that where the revised prices are lower than the price marked on the\npackage, the retail dealer or other person shall not charge any price in excess of the\nrevised price, irrespective of the month in which the commodity was pre-packed.\n(4) Nothing in sub-rule (3) shall apply to a package which is not required, under these\nrules to indicate the month and the year in which it was pre-packed.\n\n\n\n\n\n(5) No wholesale dealer or retail dealer or other person shall obliterate, smudge or alter\nthe retail sale price, indicated by the manufacturer or the packer or the importer, as the\ncase may be, on the package or on the label affixed thereto.\n(6) The manufacturer or packer or the importer shall not alter the price on the wrapper\nonce printed and used for packing.\n(7) All retailers who are covered under the Value Added Tax VAT or Turn Over Tax\n(TOT) and dealing in packaged commodities whose net content declaration is by weight\nor volume or a combination thereof shall maintain a electronic weighing machine of at\nleast accuracy class III, with smallest division of at least 1 g, with facility to issue a\nprinted receipt indicating among other things, the gross quantity, price and the like at a\nprominent place in their retail premises, free of cost, for the benefit of consumers and the\nconsumers may check the weight of their packaged commodities purchased from the shop\non such machine."
+}

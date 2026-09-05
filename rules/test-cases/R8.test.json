@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Correct panel and clearance",
+    "input": {
+      "on_principal_display_panel": true,
+      "numeral_height": 2,
+      "top": 2,
+      "bottom": 2,
+      "left": 4,
+      "right": 4
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Insufficient left clearance",
+    "input": {
+      "on_principal_display_panel": true,
+      "numeral_height": 2,
+      "top": 2,
+      "bottom": 2,
+      "left": 2,
+      "right": 4
+    },
+    "expected": "FAIL"
+  }
+]

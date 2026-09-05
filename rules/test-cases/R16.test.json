@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 16 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 16: Declarations to be made with regard to the number of usable sheets to be stated.-"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 16 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 16 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 16 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

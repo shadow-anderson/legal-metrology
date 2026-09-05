@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 18 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 18: Provisions relating to wholesale dealer and retail dealers.-"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 18 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 18 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 18 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

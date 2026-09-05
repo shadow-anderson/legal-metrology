@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 20 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 20: Action to be taken on completion of inspection of packages at the premises of the"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 20 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 20 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 20 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]
