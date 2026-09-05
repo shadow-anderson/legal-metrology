@@ -1,2 +1,5 @@
 rename_dataset.ps1
 .env.example
+.env
+node_modules/
+test.jpg
