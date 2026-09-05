@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/image-quality-status.json",
+  "title": "Image Quality Status",
+  "type": "string",
+  "enum": [
+    "PENDING",
+    "ACCEPTED",
+    "WARNING",
+    "REJECTED"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/package-type.json",
+  "title": "Package Type",
+  "type": "string",
+  "enum": [
+    "RETAIL",
+    "WHOLESALE",
+    "INDUSTRIAL",
+    "INSTITUTIONAL",
+    "UNKNOWN"
+  ]
+}

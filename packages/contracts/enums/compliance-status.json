@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/compliance-status.json",
+  "title": "Compliance Status",
+  "type": "string",
+  "enum": [
+    "PASS",
+    "FAIL",
+    "REQUIRES_VERIFICATION",
+    "NOT_APPLICABLE"
+  ]
+}

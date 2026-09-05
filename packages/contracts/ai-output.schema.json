@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/ai-output.schema.json",
+  "title": "AI Output",
+  "type": "object",
+  "properties": {
+    "inspectionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "extractedFields": {
+      "type": "array"
+    },
+    "evidence": {
+      "type": "array"
+    }
+  },
+  "required": [
+    "inspectionId",
+    "extractedFields",
+    "evidence"
+  ],
+  "additionalProperties": false
+}

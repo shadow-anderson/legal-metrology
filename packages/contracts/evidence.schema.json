@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/evidence.schema.json",
+  "title": "Evidence",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "inspectionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "ruleResultId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "sourceImageId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "evidenceType": {
+      "type": "string",
+      "enum": [
+        "OCR_REGION",
+        "VISUAL_MEASUREMENT",
+        "OFFICER_PHOTO",
+        "PHYSICAL_MEASUREMENT",
+        "OTHER"
+      ]
+    },
+    "bbox": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "number"
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "croppedImageUrl": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ocrText": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "observedValue": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "requiredValue": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "officerVerified": {
+      "type": "boolean"
+    },
+    "verifiedByOfficerId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "verifiedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "inspectionId",
+    "sourceImageId",
+    "evidenceType",
+    "officerVerified",
+    "createdAt"
+  ],
+  "additionalProperties": false
+}

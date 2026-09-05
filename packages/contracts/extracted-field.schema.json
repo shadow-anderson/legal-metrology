@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/extracted-field.schema.json",
+  "title": "Extracted Field",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "inspectionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "fieldName": {
+      "$ref": "https://legal-metrology.local/contracts/enums/field-name.json"
+    },
+    "aiValue": {
+      "type": "object"
+    },
+    "aiConfidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "sourceImageId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "bbox": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "number"
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "ocrText": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "extractionMethod": {
+      "type": "string",
+      "enum": [
+        "OCR_REGEX",
+        "OCR_RULE",
+        "VLM_ASSISTED",
+        "OFFICER"
+      ]
+    },
+    "verificationStatus": {
+      "type": "string",
+      "enum": [
+        "UNVERIFIED",
+        "CONFIRMED",
+        "CORRECTED",
+        "REJECTED"
+      ]
+    },
+    "officerValue": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "officerId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "correctedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "inspectionId",
+    "fieldName",
+    "aiValue",
+    "aiConfidence",
+    "extractionMethod",
+    "verificationStatus",
+    "createdAt"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/evidence-type.json",
+  "title": "Evidence Type",
+  "type": "string",
+  "enum": [
+    "OCR_REGION",
+    "VISUAL_MEASUREMENT",
+    "OFFICER_PHOTO",
+    "PHYSICAL_MEASUREMENT",
+    "OTHER"
+  ]
+}

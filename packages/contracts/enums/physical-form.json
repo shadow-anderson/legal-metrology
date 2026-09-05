@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/physical-form.json",
+  "title": "Physical Form",
+  "type": "string",
+  "enum": [
+    "SOLID",
+    "LIQUID",
+    "SEMI_SOLID",
+    "VISCOUS",
+    "MIXTURE_SOLID_LIQUID",
+    "OTHER",
+    "UNKNOWN"
+  ]
+}

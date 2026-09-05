@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/field-name.json",
+  "title": "Field Name",
+  "type": "string",
+  "enum": [
+    "PRODUCT_NAME",
+    "MRP",
+    "NET_QTY",
+    "MANUFACTURER",
+    "PACKER",
+    "IMPORTER",
+    "ADDRESS",
+    "DATE",
+    "CONSUMER_CARE",
+    "ORIGIN",
+    "DIMENSIONS",
+    "OTHER_DECLARATIONS"
+  ]
+}

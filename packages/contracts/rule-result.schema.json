@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/rule-result.schema.json",
+  "title": "Rule Result",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "inspectionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "ruleId": {
+      "type": "string"
+    },
+    "ruleVersion": {
+      "type": "string"
+    },
+    "checkId": {
+      "type": "string"
+    },
+    "status": {
+      "$ref": "https://legal-metrology.local/contracts/enums/compliance-status.json"
+    },
+    "message": {
+      "type": "string"
+    },
+    "observedValue": {
+      "type": "object"
+    },
+    "requiredValue": {
+      "type": "object"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "resultSource": {
+      "type": "string",
+      "enum": [
+        "SYSTEM",
+        "OFFICER_REEVALUATION"
+      ]
+    },
+    "verificationAction": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "CONFIRMED",
+        "REJECTED",
+        null
+      ]
+    },
+    "verifiedByOfficerId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "verifiedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "inspectionId",
+    "ruleId",
+    "ruleVersion",
+    "checkId",
+    "status",
+    "message",
+    "confidence",
+    "resultSource",
+    "createdAt"
+  ],
+  "additionalProperties": false
+}
