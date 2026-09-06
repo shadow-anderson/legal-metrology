@@ -86,7 +86,7 @@ router.post("/inspections/:id/images/upload-url", async (req, res) => {
   }
 });
 
-router.post("/inspections/:id/images/confirm", async (req, res) => {
+router.post("/inspections/:id/images/", async (req, res) => {
   try {
     const inspectionId = req.params.id;
 

@@ -3,26 +3,42 @@
   "$id": "https://legal-metrology.local/contracts/extracted-field.schema.json",
   "title": "Extracted Field",
   "type": "object",
+
   "properties": {
     "id": {
       "type": "string",
       "format": "uuid"
     },
+
     "inspectionId": {
       "type": "string",
       "format": "uuid"
     },
+
     "fieldName": {
       "$ref": "https://legal-metrology.local/contracts/enums/field-name.json"
     },
+
     "aiValue": {
-      "type": "object"
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
     },
+
     "aiConfidence": {
-      "type": "number",
+      "type": [
+        "number",
+        "null"
+      ],
       "minimum": 0,
       "maximum": 1
     },
+
     "sourceImageId": {
       "type": [
         "string",
@@ -30,6 +46,7 @@
       ],
       "format": "uuid"
     },
+
     "bbox": {
       "type": [
         "array",
@@ -41,12 +58,14 @@
       "minItems": 4,
       "maxItems": 4
     },
+
     "ocrText": {
       "type": [
         "string",
         "null"
       ]
     },
+
     "extractionMethod": {
       "type": "string",
       "enum": [
@@ -56,6 +75,7 @@
         "OFFICER"
       ]
     },
+
     "verificationStatus": {
       "type": "string",
       "enum": [
@@ -65,12 +85,18 @@
         "REJECTED"
       ]
     },
+
     "officerValue": {
       "type": [
         "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
         "null"
       ]
     },
+
     "officerId": {
       "type": [
         "string",
@@ -78,6 +104,7 @@
       ],
       "format": "uuid"
     },
+
     "correctedAt": {
       "type": [
         "string",
@@ -85,20 +112,21 @@
       ],
       "format": "date-time"
     },
+
     "createdAt": {
       "type": "string",
       "format": "date-time"
     }
   },
+
   "required": [
     "id",
     "inspectionId",
     "fieldName",
-    "aiValue",
-    "aiConfidence",
     "extractionMethod",
     "verificationStatus",
     "createdAt"
   ],
+
   "additionalProperties": false
 }

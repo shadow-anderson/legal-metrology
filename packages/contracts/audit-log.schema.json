@@ -53,17 +53,25 @@
       "format": "uuid"
     },
     "oldValue": {
-      "type": [
-        "object",
-        "null"
-      ]
-    },
-    "newValue": {
-      "type": [
-        "object",
-        "null"
-      ]
-    },
+  "type": [
+    "object",
+    "array",
+    "string",
+    "number",
+    "boolean",
+    "null"
+  ]
+},
+"newValue": {
+  "type": [
+    "object",
+    "array",
+    "string",
+    "number",
+    "boolean",
+    "null"
+  ]
+},
     "reason": {
       "type": [
         "string",

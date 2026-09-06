@@ -57,17 +57,25 @@
       ]
     },
     "observedValue": {
-      "type": [
-        "object",
-        "null"
-      ]
-    },
-    "requiredValue": {
-      "type": [
-        "object",
-        "null"
-      ]
-    },
+  "type": [
+    "object",
+    "array",
+    "string",
+    "number",
+    "boolean",
+    "null"
+  ]
+},
+"requiredValue": {
+  "type": [
+    "object",
+    "array",
+    "string",
+    "number",
+    "boolean",
+    "null"
+  ]
+},
     "confidence": {
       "type": [
         "number",

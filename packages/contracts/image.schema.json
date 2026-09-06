@@ -57,11 +57,8 @@
       ]
     },
     "qualityCheck": {
-      "type": [
-        "object",
-        "null"
-      ]
-    },
+  "type": "object"
+},
     "uploadedAt": {
       "type": "string",
       "format": "date-time"

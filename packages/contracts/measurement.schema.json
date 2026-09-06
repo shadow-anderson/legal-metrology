@@ -52,14 +52,14 @@
         "integer",
         "null"
       ],
-      "minimum": 0
+      "minimum": 1
     },
     "sampleSize": {
       "type": [
         "integer",
         "null"
       ],
-      "minimum": 0
+      "minimum": 1
     },
     "sampleValues": {
       "type": [

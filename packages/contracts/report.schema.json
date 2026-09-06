@@ -25,17 +25,11 @@
       "type": "string"
     },
     "pdfUrl": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
-    "editableUrl": {
-      "type": [
-        "string",
-        "null"
-      ]
-    },
+  "type": "string"
+},
+"editableUrl": {
+  "type": "string"
+},
     "status": {
       "type": "string",
       "enum": [
