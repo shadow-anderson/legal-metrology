@@ -45,8 +45,8 @@ function Processing({ onComplete }) {
                 <h2 className="fw-bold mb-2"> Processing Inspection </h2>
 
                 <p className="text-muted mb-4">
-                  Analyzing the uploaded product images and checking
-                  compliance requirements.
+                  Analyzing product images, extracting declarations,
+                  and checking applicable compliance requirements.
                 </p>
 
                 {/* Progress */}

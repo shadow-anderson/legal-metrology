@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 
 function InspectionPage({ onStartInspection }) {
   const videoRef = useRef(null);
@@ -8,6 +8,19 @@ function InspectionPage({ onStartInspection }) {
   const [cameraOpen, setCameraOpen] = useState(false);
   const [images, setImages] = useState([]);
   const [cameraError, setCameraError] = useState("");
+
+  //automatically stops camera when leaving page
+  useEffect(() => {
+  return () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => {
+        track.stop();
+      });
+
+      streamRef.current = null;
+    }
+  };
+}, []);
 
   // Open camera
   const openCamera = async () => {
