@@ -2,23 +2,401 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://legal-metrology.local/contracts/ai-output.schema.json",
   "title": "AI Output",
+  "description": "Structured output produced by the AI service from inspection images.",
   "type": "object",
+
+
   "properties": {
-    "inspectionId": {
-      "type": "string",
-      "format": "uuid"
+    "product": {
+      "type": "object",
+      "description": "Product and declaration observations extracted by AI.",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/confidentString"
+        },
+
+
+        "category": {
+          "$ref": "#/$defs/confidentString"
+        },
+
+
+        "netQuantity": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "unit": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "confidence": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "value",
+            "unit",
+            "confidence"
+          ],
+          "additionalProperties": false
+        },
+
+
+        "mrp": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "currency": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "confidence": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "value",
+            "currency",
+            "confidence"
+          ],
+          "additionalProperties": false
+        },
+
+
+        "manufacturer": {
+          "$ref": "#/$defs/confidentStringNullable"
+        },
+
+
+        "packer": {
+          "$ref": "#/$defs/confidentStringNullable"
+        },
+
+
+        "importer": {
+          "$ref": "#/$defs/confidentStringNullable"
+        },
+
+
+        "manufactureDate": {
+          "$ref": "#/$defs/confidentStringNullable"
+        },
+
+
+        "consumerCare": {
+          "type": "object",
+          "properties": {
+            "phone": {
+              "$ref": "#/$defs/confidentStringNullable"
+            },
+            "email": {
+              "$ref": "#/$defs/confidentStringNullable"
+            }
+          },
+          "required": [
+            "phone",
+            "email"
+          ],
+          "additionalProperties": false
+        },
+
+
+        "countryOfOrigin": {
+          "$ref": "#/$defs/confidentStringNullable"
+        }
+      },
+
+
+      "required": [
+        "name",
+        "category",
+        "netQuantity",
+        "mrp",
+        "manufacturer",
+        "packer",
+        "importer",
+        "manufactureDate",
+        "consumerCare",
+        "countryOfOrigin"
+      ],
+
+
+      "additionalProperties": false
     },
-    "extractedFields": {
-      "type": "array"
+
+
+    "regions": {
+      "type": "array",
+      "description": "Detected declaration regions and their OCR provenance.",
+      "items": {
+        "$ref": "#/$defs/region"
+      }
     },
-    "evidence": {
-      "type": "array"
+
+
+    "imageQuality": {
+      "type": "array",
+      "description": "AI/CV quality assessment for each processed image.",
+      "items": {
+        "$ref": "#/$defs/imageQuality"
+      }
+    },
+
+
+    "scale": {
+      "type": "object",
+      "description": "Physical scale information used for visual measurements.",
+      "properties": {
+        "established": {
+          "type": "boolean"
+        },
+
+
+        "pixelsPerMm": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+
+
+        "method": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "REFERENCE_MARKER",
+            "PACKAGE_DIMENSION",
+            "MULTI_VIEW",
+            "NONE",
+            null
+          ]
+        }
+      },
+
+
+      "required": [
+        "established",
+        "pixelsPerMm",
+        "method"
+      ],
+
+
+      "additionalProperties": false
     }
   },
+
+
   "required": [
-    "inspectionId",
-    "extractedFields",
-    "evidence"
+    "product",
+    "regions",
+    "imageQuality",
+    "scale"
   ],
-  "additionalProperties": false
+
+
+  "additionalProperties": false,
+
+
+  "$defs": {
+    "confidentString": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "value",
+        "confidence"
+      ],
+      "additionalProperties": false
+    },
+
+
+    "confidentStringNullable": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "value",
+        "confidence"
+      ],
+      "additionalProperties": false
+    },
+
+
+    "region": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string",
+          "enum": [
+            "PRODUCT_NAME",
+            "MRP",
+            "NET_QTY",
+            "MANUFACTURER",
+            "PACKER",
+            "IMPORTER",
+            "ADDRESS",
+            "DATE",
+            "CONSUMER_CARE",
+            "ORIGIN",
+            "DIMENSIONS",
+            "OTHER_DECLARATIONS"
+          ]
+        },
+
+
+        "bbox": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "number",
+              "minimum": 0
+            }
+          ],
+          "minItems": 4,
+          "maxItems": 4
+        },
+
+
+        "ocrText": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+
+
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+
+
+        "sourceImageId": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+
+
+      "required": [
+        "field",
+        "bbox",
+        "ocrText",
+        "confidence",
+        "sourceImageId"
+      ],
+
+
+      "additionalProperties": false
+    },
+
+
+    "imageQuality": {
+      "type": "object",
+      "properties": {
+        "imageId": {
+          "type": "string",
+          "format": "uuid"
+        },
+
+
+        "blurScore": {
+          "type": "number",
+          "minimum": 0
+        },
+
+
+        "glareFraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+
+
+        "skewDegrees": {
+          "type": "number"
+        },
+
+
+        "accepted": {
+          "type": "boolean"
+        }
+      },
+
+
+      "required": [
+        "imageId",
+        "blurScore",
+        "glareFraction",
+        "skewDegrees",
+        "accepted"
+      ],
+
+
+      "additionalProperties": false
+    }
+  }
 }
