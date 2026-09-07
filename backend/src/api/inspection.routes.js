@@ -86,20 +86,29 @@ router.post("/inspections/:id/images/upload-url", async (req, res) => {
   }
 });
 
-router.post("/inspections/:id/images/", async (req, res) => {
+router.post("/inspections/:id/images/confirm", async (req, res) => {
   try {
     const inspectionId = req.params.id;
 
-    const { data: inspection, error: inspectionError } = await supabase
-  .from("inspections")
-  .select("id")
-  .eq("id", inspectionId)
-  .single();
-
-console.log("Inspection check:", inspection);
-console.log("Inspection check error:", inspectionError);
-    
     const { filePath, viewType } = req.body;
+
+    if (!filePath || !viewType) {
+      return res.status(400).json({
+        error: "filePath and viewType are required"
+      });
+    }
+
+    const { data: inspection, error: inspectionError } = await supabase
+      .from("inspections")
+      .select("id")
+      .eq("id", inspectionId)
+      .single();
+
+    if (inspectionError || !inspection) {
+      return res.status(404).json({
+        error: "Inspection not found"
+      });
+    }
 
     const { data, error } = await supabase
       .from("product_images")
@@ -123,6 +132,7 @@ console.log("Inspection check error:", inspectionError);
       message: "Image confirmed and metadata saved",
       image: data
     });
+
   } catch (error) {
     console.error("Server error:", error);
 
