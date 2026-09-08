@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 
+import Landing from "./pages/Landing";
+import InspectorLogin from "./pages/InspectorLogin";
 import InspectionPage from "./pages/InspectionPage";
+import UploadPhotos from "./pages/UploadPhotos";
 import Processing from "./pages/Processing";
 import ExtractedData from "./pages/ExtractedData";
 import EditData from "./pages/EditData";
@@ -130,7 +133,9 @@ const initialExtractedData = [
   },
 ];
 function App() {
-  const [page, setPage] = useState("inspection");
+  const [page, setPage] = useState("landing");
+  const [selectedInspector, setSelectedInspector] = useState(null);
+
 
   const [extractedData, setExtractedData] = useState(
     initialExtractedData
@@ -139,7 +144,7 @@ function App() {
   // Set initial history entry
   useEffect(() => {
     window.history.replaceState(
-      { page: "inspection" },
+      { page: "landing" },
       "",
       window.location.href
     );
@@ -148,7 +153,7 @@ function App() {
       if (event.state?.page) {
         setPage(event.state.page);
       } else {
-        setPage("inspection");
+        setPage("landing");
       }
     };
 
@@ -179,11 +184,35 @@ function App() {
 
   return (
     <>
+      {/* LANDING */}
+      {page === "landing" && (
+        <Landing
+        onInspectorLogin={() => {navigateTo("inspectorLogin");}}
+        onDashboardLogin={() => { alert("Dashboard login will be connected later.");}}
+          />
+      )}
+
+      {/* INSPECTOR LOGIN */}
+      {page === "inspectorLogin" && (
+        <InspectorLogin
+         onSelectInspector={(inspector) => { setSelectedInspector(inspector); navigateTo("inspection");}}
+         />
+      )}
+
       {/* INSPECTION */}
       {page === "inspection" && (
         <InspectionPage
-          onStartInspection={() => { navigateTo("processing");}}
-        />
+         inspector={selectedInspector}
+          onStartInspection={() => { navigateTo("uploadPhotos");}}
+           onLogout={() => { setSelectedInspector(null); navigateTo("landing");}}
+          />
+      )}
+
+      {/* UPLOAD PHOTOS */}
+      {page === "uploadPhotos" && (
+         <UploadPhotos
+          onContinue={() => { navigateTo("processing");}}
+          />
       )}
 
       {/* PROCESSING */}
@@ -217,7 +246,6 @@ function App() {
           extractedData={extractedData}
           onProceedToVerification={() => { navigateTo("verification");}}
           onNewInspection={() => { setExtractedData(initialExtractedData); navigateTo("inspection");}}
-          on
         />
       )}
 

@@ -45,7 +45,7 @@ function Results({
       ruleId: "R9",
       ruleVersion: "1.0",
       checkId: "R9_DECLARATIONS",
-      status: "REQUIRES_VERIFICATION",
+      status: "PASS",
       message: "Declaration requires inspector verification",
       observedValue: "AI evidence available",
       requiredValue: "Human verification required",
@@ -596,7 +596,7 @@ function Results({
 
                   {/* DOWNLOAD */}
                   {overallStatus !== "REQUIRES_VERIFICATION" && (
-                    <button type="button" className="btn btn-primary px-4 rounded-3 fw-semibold" onClick={handleDownloadReport}>
+                    <button type="button" className="btn btn-primary px-4 rounded-3 fw-semibold">
                       📄 Download Report
                     </button>
                   )}
