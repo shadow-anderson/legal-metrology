@@ -1,39 +1,39 @@
 {
-  "status_values": [
-    "PASS",
-    "FAIL",
-    "VERIFY",
-    "NOT_APPLICABLE"
-  ],
-  "version": "1.0.0",
   "rule_id": "R12",
-  "reference": "Rule 12",
-  "title": "Manner in which declaration of quantity shall be",
-  "default_measurement_rules": {
-    "solid": "MASS",
-    "semi_solid": "MASS",
-    "viscous": "MASS",
-    "mixture_solid_liquid": "MASS",
-    "linear_sale": "LENGTH",
-    "area_sale": "AREA",
-    "liquid": "VOLUME",
-    "cubic_measure": "VOLUME",
-    "sold_by_number": "NUMBER"
-  },
-  "additional_rules": [
-    "Mass declaration may additionally state number of commodities.",
-    "Where quantity alone is insufficient, dimensions or number must also be declared where necessary.",
-    "Additional necessary information should appear on the same panel as required information.",
-    "Quantity declaration must not create an exaggerated, misleading or inadequate impression."
-  ],
-  "small_package_rule": "For capacity 5 cubic cm or less, quantity may be on a non-removable tag/card/tape/device with identifying mark or inscription.",
-  "exception_source": "Fourth Schedule",
-  "input_fields": [
-    "product.physical_form",
-    "product.sale_basis",
-    "product.net_quantity.measurement_type",
-    "product.net_quantity.raw_text",
-    "product.commodity_name",
-    "package.capacity_cm3"
+  "rule_name": "Declaration of Net Quantity",
+  "description": "Validates the declaration of net quantity according to Rule 12.",
+
+  "checks": [
+    {
+      "check_id": "R12_1",
+      "type": "MEASUREMENT_TYPE",
+      "field": "measurement_type",
+      "requirement": "Net quantity must be declared according to the appropriate measurement type",
+      "on_missing": "REQUIRES_VERIFICATION"
+    },
+
+    {
+      "check_id": "R12_2",
+      "type": "ADDITIONAL_QUANTITY_REQUIREMENTS",
+      "field": "net_quantity",
+      "requirement": "Net quantity declaration must contain a valid positive value and unit",
+      "on_missing": "FAIL"
+    },
+
+    {
+      "check_id": "R12_3",
+      "type": "SMALL_PACKAGE_EXCEPTION",
+      "field": "package_capacity",
+      "requirement": "Small package exception applies only when capacity is 5 cubic centimetres or less",
+      "on_missing": "NOT_APPLICABLE"
+    },
+
+    {
+      "check_id": "R12_4",
+      "type": "SCHEDULE_LOOKUP",
+      "field": "commodity_name",
+      "requirement": "Commodity must comply with applicable Fourth Schedule requirements",
+      "on_missing": "REQUIRES_VERIFICATION"
+    }
   ]
 }

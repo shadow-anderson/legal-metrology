@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/applicability-result.schema.json",
+  "title": "Applicability Result",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "inspectionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "status": {
+      "$ref": "https://legal-metrology.local/contracts/enums/applicability-status.json"
+    },
+    "contextSnapshot": {
+      "type": "object"
+    },
+    "applicableRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "applicableSchedules": {
+      "type": "array"
+    },
+    "exemptions": {
+      "type": "array"
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confirmedByOfficerId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "confirmedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "evaluatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "inspectionId",
+    "status",
+    "contextSnapshot",
+    "applicableRules",
+    "applicableSchedules",
+    "exemptions",
+    "reasons",
+    "evaluatedAt"
+  ],
+  "additionalProperties": false
+}

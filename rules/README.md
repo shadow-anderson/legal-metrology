@@ -47,4 +47,20 @@ NOT_APPLICABLE
 ## Important
 
 These JSON files are rule data and test definitions, not the executable JavaScript engine.
-The backend rule engine should load these files and evaluate structured package data produced by the AI/OCR layer.
+The backend loader normalizes both the legacy JSON shape and the common envelope shape
+before evaluation. It loads all 34 definitions, all schedules, and all test suites from
+`manifest.json`.
+
+## Validation commands
+
+From `backend/`:
+
+```text
+npm run test:rule-pack
+npm run test:rule-engine
+npm run test:applicability
+```
+
+The rule-pack check verifies that every manifest entry exists and that every rule
+has executable normalized checks. The PDF fixture harness exercises the structured
+rules (R6, R7, R8, R9, R10, R12 and R13) with the supplied package scenarios.

@@ -1,2 +1,4 @@
 rename_dataset.ps1
 .env.example
+backend/node_modules/
+backend/.env

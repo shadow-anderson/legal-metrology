@@ -1,25 +1,41 @@
-require("dotenv").config();
-const express = require("express")
-const cors = require("cors");
-const config = require("./src/db/config");
-// const ConnectDB = require("./config/database.js")
+import express from "express";
+import cors from "cors";
+import "dotenv/config";
+import { PORT } from "./src/db/config.js";
+import { runComplianceCheck } from "./src/ruleEngine/runComplianceCheck.js";
 
-//Step-1
-const app = express()
-console.log("Server is running...")
+const app = express();
 
-//Step-2
-app.use(express.json())
+app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-}))
+  origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+  credentials: true
+}));
 
-//Step-3
-const PORT = config.PORT;
+app.get("/health", (_request, response) => {
+  response.json({ success: true });
+});
+
+app.post("/api/compliance/check", (request, response) => {
+  try {
+    const result = runComplianceCheck(request.body);
+    response.json({
+      success: true,
+      inspectionId: result.inspectionId,
+      applicabilityResult: result.applicability,
+      ruleResults: result.ruleResults,
+      complianceSummary: result.complianceSummary
+    });
+  } catch (error) {
+    response.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-})
+  console.log(`Server running on port ${PORT}`);
+});
 
-//Step-4
-// ConnectDB();
+export default app;

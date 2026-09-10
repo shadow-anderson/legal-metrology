@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/applicability-status.json",
+  "title": "Applicability Status",
+  "type": "string",
+  "enum": [
+    "APPLICABLE",
+    "NOT_APPLICABLE",
+    "REQUIRES_VERIFICATION"
+  ]
+}

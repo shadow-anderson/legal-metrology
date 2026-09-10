@@ -1,11 +1,3 @@
-const dotenv = require("dotenv");
+import "dotenv/config";
 
-dotenv.config();
-
-if (!process.env.PORT) {
-    throw new Error("PORT is not defined in environment variables");
-}
-
-module.exports = {
-    PORT: process.env.PORT,
-};
+export const PORT = Number(process.env.PORT || 5001);

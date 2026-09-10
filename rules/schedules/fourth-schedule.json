@@ -2,13 +2,18 @@
   "status_values": [
     "PASS",
     "FAIL",
-    "VERIFY",
+    "REQUIRES_VERIFICATION",
     "NOT_APPLICABLE"
   ],
+
   "version": "1.0.0",
+
   "schedule": "Fourth Schedule",
+
   "reference": "Rule 12(2)",
+
   "purpose": "Exceptions to default Rule 12 measurement-type mapping.",
+
   "entries": [
     {
       "commodity": "Aerosol products",

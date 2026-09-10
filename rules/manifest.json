@@ -1,5 +1,13 @@
 {
   "package": "legal-metrology-rules-complete",
+  "schema_version": "1.0.0",
+  "common_schema": "schema/common.schema.json",
+  "contracts": [
+    "../packages/contracts/applicability-result.schema.json",
+    "../packages/contracts/enums/applicability-status.json",
+    "../packages/contracts/rule-result.schema.json",
+    "../packages/contracts/enums/compliance-status.json"
+  ],
   "definitions": [
     "R1.json",
     "R10.json",
