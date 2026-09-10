@@ -7,8 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-  "start": "node server.js",
-  "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,8 @@
   "type": "commonjs",
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "dotenv": "^17.4.2",
     "express": "^5.2.1"
   }

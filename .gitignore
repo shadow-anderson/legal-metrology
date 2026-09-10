@@ -3,3 +3,5 @@ rename_dataset.ps1
 .env
 node_modules/
 test.jpg
+backend/check-user.js
+backend/get-token.js
