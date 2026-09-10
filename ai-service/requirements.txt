@@ -1,0 +1,14 @@
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pillow>=10.0
+pillow-avif-plugin>=1.4.6
+numpy>=1.26
+opencv-python-headless>=4.9
+jsonschema>=4.21
+python-multipart>=0.0.9
+
+# Optional production OCR engine. The service runs safely without it.
+pytesseract>=0.3.10
+
+# In-process OCR fallback; does not require a native executable.
+rapidocr-onnxruntime>=1.3.24
