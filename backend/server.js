@@ -1,7 +1,6 @@
 const supabase = require("./src/db/supabase");
 const express = require("express");
 const inspectionRoutes = require("./src/api/inspection.routes");
-const aiCallbackRoutes = require("./src/ai-orchestration/ai-callback.routes");
 const resultsRoutes = require("./src/api/results.routes");
 
 const app = express();
@@ -15,7 +14,6 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api", inspectionRoutes);
-app.use("/api", aiCallbackRoutes);
 app.use("/api", resultsRoutes);
 
 const PORT = process.env.PORT || 3000;
