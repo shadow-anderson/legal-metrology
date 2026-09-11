@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/audit-entity-type.json",
+  "title": "Audit Entity Type",
+  "type": "string",
+  "enum": [
+    "INSPECTION",
+    "IMAGE",
+    "EXTRACTED_FIELD",
+    "APPLICABILITY_RESULT",
+    "RULE_RESULT",
+    "EVIDENCE",
+    "MEASUREMENT",
+    "REPORT"
+  ]
+}

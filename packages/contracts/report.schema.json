@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/report.schema.json",
+  "title": "Report",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "inspectionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "reportType": {
+      "type": "string",
+      "enum": [
+        "FINAL_INSPECTION"
+      ]
+    },
+    "reportVersion": {
+      "type": "string"
+    },
+    "templateVersion": {
+      "type": "string"
+    },
+    "pdfUrl": {
+  "type": "string"
+},
+"editableUrl": {
+  "type": "string"
+},
+    "status": {
+      "type": "string",
+      "enum": [
+        "GENERATED",
+        "FAILED"
+      ]
+    },
+    "generatedBy": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "inspectionId",
+    "reportType",
+    "reportVersion",
+    "templateVersion",
+    "status",
+    "generatedBy",
+    "generatedAt"
+  ],
+  "additionalProperties": false
+}

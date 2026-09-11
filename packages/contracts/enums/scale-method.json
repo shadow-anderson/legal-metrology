@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/scale-method.json",
+  "title": "Scale Method",
+  "type": "string",
+  "enum": [
+    "REFERENCE_MARKER",
+    "PACKAGE_DIMENSION",
+    "MULTI_VIEW",
+    "NONE"
+  ]
+}

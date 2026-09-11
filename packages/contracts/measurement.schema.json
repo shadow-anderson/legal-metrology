@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/measurement.schema.json",
+  "title": "Measurement",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "inspectionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "measurementType": {
+      "type": "string",
+      "enum": [
+        "PHYSICAL_QUANTITY",
+        "FONT_HEIGHT",
+        "LETTER_HEIGHT",
+        "PDP_AREA",
+        "CLEARANCE",
+        "PACKAGE_DIMENSION"
+      ]
+    },
+    "unit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "value": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "declaredValue": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "declaredUnit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lotSize": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "sampleSize": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "sampleValues": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "average": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "maxDeficiency": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "mpeAllowed": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "scaleMethod": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "REFERENCE_MARKER",
+        "PACKAGE_DIMENSION",
+        "MULTI_VIEW",
+        "NONE",
+        null
+      ]
+    },
+    "details": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "result": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL",
+        "REQUIRES_VERIFICATION"
+      ]
+    },
+    "recordedByOfficerId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "inspectionId",
+    "measurementType",
+    "result",
+    "recordedByOfficerId",
+    "createdAt"
+  ],
+  "additionalProperties": false
+}

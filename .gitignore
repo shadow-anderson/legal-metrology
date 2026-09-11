@@ -1,3 +1,7 @@
 rename_dataset.ps1
 .env.example
-backend/node_modules
+.env
+node_modules/
+test.jpg
+backend/check-user.js
+backend/get-token.js

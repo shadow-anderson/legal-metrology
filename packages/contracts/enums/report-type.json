@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/report-type.json",
+  "title": "Report Type",
+  "type": "string",
+  "enum": [
+    "FINAL_INSPECTION"
+  ]
+}

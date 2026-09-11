@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/inspection-status.json",
+  "title": "Inspection Status",
+  "type": "string",
+  "enum": [
+    "DRAFT",
+    "IMAGES_UPLOADED",
+    "PROCESSING",
+    "AI_EXTRACTED",
+    "RULES_CHECKED",
+    "NEEDS_VERIFICATION",
+    "VERIFIED",
+    "REPORT_GENERATED",
+    "COMPLETED"
+  ]
+}

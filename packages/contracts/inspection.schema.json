@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/inspection.schema.json",
+  "title": "Inspection",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "productId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "officerId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "inspectionType": {
+      "$ref": "https://legal-metrology.local/contracts/enums/inspection-type.json"
+    },
+    "status": {
+      "$ref": "https://legal-metrology.local/contracts/enums/inspection-status.json"
+    },
+    "overallResult": {
+      "type": ["string", "null"],
+      "enum": [
+        "PASS",
+        "FAIL",
+        "REQUIRES_VERIFICATION",
+        "NOT_APPLICABLE",
+        null
+      ]
+    },
+    "context": {
+      "$ref": "./inspection-context.schema.json"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "productId",
+    "officerId",
+    "inspectionType",
+    "status",
+    "context",
+    "createdAt",
+    "updatedAt"
+  ],
+  "additionalProperties": false
+}

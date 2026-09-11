@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/audit-log.schema.json",
+  "title": "Audit Log",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "inspectionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "userId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "INSPECTION_CREATED",
+        "IMAGE_UPLOADED",
+        "IMAGE_CONFIRMED",
+        "AI_COMPLETED",
+        "APPLICABILITY_CONFIRMED",
+        "FIELD_CORRECTED",
+        "BBOX_CORRECTED",
+        "RULE_REEVALUATED",
+        "FINDING_CONFIRMED",
+        "FINDING_REJECTED",
+        "MEASUREMENT_ADDED",
+        "EVIDENCE_ADDED",
+        "REPORT_GENERATED",
+        "STATUS_CHANGED"
+      ]
+    },
+    "entityType": {
+      "type": "string",
+      "enum": [
+        "INSPECTION",
+        "IMAGE",
+        "EXTRACTED_FIELD",
+        "APPLICABILITY_RESULT",
+        "RULE_RESULT",
+        "EVIDENCE",
+        "MEASUREMENT",
+        "REPORT"
+      ]
+    },
+    "entityId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "oldValue": {
+  "type": [
+    "object",
+    "array",
+    "string",
+    "number",
+    "boolean",
+    "null"
+  ]
+},
+"newValue": {
+  "type": [
+    "object",
+    "array",
+    "string",
+    "number",
+    "boolean",
+    "null"
+  ]
+},
+    "reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "inspectionId",
+    "userId",
+    "action",
+    "entityType",
+    "entityId",
+    "createdAt"
+  ],
+  "additionalProperties": false
+}

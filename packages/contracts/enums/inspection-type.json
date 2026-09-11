@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/inspection-type.json",
+  "title": "Inspection Type",
+  "type": "string",
+  "enum": [
+    "LABEL_COMPLIANCE",
+    "PHYSICAL_QUANTITY"
+  ]
+}

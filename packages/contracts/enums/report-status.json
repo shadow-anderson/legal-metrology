@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/report-status.json",
+  "title": "Report Status",
+  "type": "string",
+  "enum": [
+    "GENERATED",
+    "FAILED"
+  ]
+}

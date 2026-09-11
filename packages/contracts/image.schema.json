@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/image.schema.json",
+  "title": "Image",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "inspectionId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "storagePath": {
+      "type": "string"
+    },
+    "viewType": {
+      "type": "string",
+      "enum": [
+        "FRONT",
+        "BACK",
+        "SIDE",
+        "TOP",
+        "BOTTOM",
+        "DETAIL",
+        "OTHER"
+      ]
+    },
+    "mimeType": {
+      "type": "string",
+      "enum": [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+      ]
+    },
+    "fileSizeBytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "widthPx": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "heightPx": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "qualityStatus": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "ACCEPTED",
+        "WARNING",
+        "REJECTED"
+      ]
+    },
+    "qualityCheck": {
+  "type": "object"
+},
+    "uploadedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "inspectionId",
+    "storagePath",
+    "viewType",
+    "mimeType",
+    "fileSizeBytes",
+    "widthPx",
+    "heightPx",
+    "qualityStatus",
+    "uploadedAt"
+  ],
+  "additionalProperties": false
+}

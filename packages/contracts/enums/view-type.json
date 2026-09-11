@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/view-type.json",
+  "title": "View Type",
+  "type": "string",
+  "enum": [
+    "FRONT",
+    "BACK",
+    "SIDE",
+    "TOP",
+    "BOTTOM",
+    "BACKDETAIL",
+    "OTHER"
+  ]
+}

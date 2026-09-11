@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/inspection-context.schema.json",
+  "title": "Inspection Context",
+  "type": "object",
+  "properties": {
+    "packageType": {
+      "type": "string",
+      "enum": [
+        "RETAIL",
+        "WHOLESALE",
+        "INDUSTRIAL",
+        "INSTITUTIONAL",
+        "UNKNOWN"
+      ]
+    },
+    "commodityName": {
+      "type": "string"
+    },
+    "isImported": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isFoodArticle": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isIndustrialConsumer": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isInstitutionalConsumer": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "declaredQuantity": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "physicalForm": {
+      "type": "string",
+      "enum": [
+        "SOLID",
+        "LIQUID",
+        "SEMI_SOLID",
+        "VISCOUS",
+        "MIXTURE_SOLID_LIQUID",
+        "OTHER",
+        "UNKNOWN"
+      ]
+    },
+    "saleBasis": {
+      "type": "string",
+      "enum": [
+        "MASS",
+        "VOLUME",
+        "LENGTH",
+        "AREA",
+        "NUMBER",
+        "CUBIC_VOLUME",
+        "UNKNOWN"
+      ]
+    },
+    "packageCapacityCm3": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "principalDisplayPanelAreaCm2": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "packageDimensions": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "specialCharacteristics": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "possibleExemptions": {
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "required": [
+  "packageType",
+  "commodityName",
+  "isImported",
+  "isFoodArticle",
+  "isIndustrialConsumer",
+  "isInstitutionalConsumer"
+],
+  "additionalProperties": false
+}

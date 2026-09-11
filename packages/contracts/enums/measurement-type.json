@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/measurement-type.json",
+  "title": "Measurement Type",
+  "type": "string",
+  "enum": [
+    "PHYSICAL_QUANTITY",
+    "FONT_HEIGHT",
+    "LETTER_HEIGHT",
+    "PDP_AREA",
+    "CLEARANCE",
+    "PACKAGE_DIMENSION"
+  ]
+}

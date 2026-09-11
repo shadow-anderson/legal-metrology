@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/extraction-method.json",
+  "title": "Extraction Method",
+  "type": "string",
+  "enum": [
+    "OCR_REGEX",
+    "OCR_RULE",
+    "VLM_ASSISTED",
+    "OFFICER"
+  ]
+}

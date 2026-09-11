@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/sale-basis.json",
+  "title": "Sale Basis",
+  "type": "string",
+  "enum": [
+    "MASS",
+    "VOLUME",
+    "LENGTH",
+    "AREA",
+    "NUMBER",
+    "CUBIC_VOLUME",
+    "UNKNOWN"
+  ]
+}

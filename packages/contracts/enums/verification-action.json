@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/verification-action.json",
+  "title": "Verification Action",
+  "type": "string",
+  "enum": [
+    "CONFIRMED",
+    "REJECTED"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://legal-metrology.local/contracts/enums/result-source.json",
+  "title": "Result Source",
+  "type": "string",
+  "enum": [
+    "SYSTEM",
+    "OFFICER_REEVALUATION"
+  ]
+}
