@@ -444,4 +444,180 @@ return res.status(200).json({
     }
   }
 );
+
+// =====================================================
+// VERIFY AI FINDING
+// POST /api/inspections/:id/verification
+// =====================================================
+
+router.post(
+  "/inspections/:id/verification",
+  requireAuth,
+  async (req, res) => {
+    try {
+      const inspectionId = req.params.id;
+
+      const {
+        findingId,
+        verificationStatus,
+        officerValue
+      } = req.body;
+
+      // 1. Validate request
+      if (!findingId || !verificationStatus) {
+        return res.status(400).json({
+          error: "findingId and verificationStatus are required"
+        });
+      }
+
+      const allowedStatuses = [
+        "VERIFIED",
+        "CORRECTED",
+        "REJECTED"
+      ];
+
+      if (!allowedStatuses.includes(verificationStatus)) {
+        return res.status(400).json({
+          error:
+            "verificationStatus must be VERIFIED, CORRECTED or REJECTED"
+        });
+      }
+
+      // 2. Get authenticated Supabase client
+      const authHeader = req.headers.authorization;
+      const token = authHeader.split(" ")[1];
+
+      const { createClient } = require("@supabase/supabase-js");
+
+      const userSupabase = createClient(
+        process.env.SUPABASE_URL,
+        process.env.SUPABASE_KEY,
+        {
+          global: {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        }
+      );
+
+      // 3. Check finding belongs to this inspection
+      const { data: finding, error: findingError } =
+        await userSupabase
+          .from("extracted_fields")
+          .select(`
+            id,
+            inspection_id,
+            field_name,
+            ai_value,
+            ai_confidence,
+            officer_value,
+            officer_id,
+            verification_status
+          `)
+          .eq("id", findingId)
+          .eq("inspection_id", inspectionId)
+          .limit(1);
+
+      if (findingError) {
+        console.error("Verification lookup error:", findingError);
+
+        return res.status(500).json({
+          error: "Failed to find AI finding",
+          details: findingError.message
+        });
+      }
+
+      const currentFinding = finding?.[0];
+
+      if (!currentFinding) {
+        return res.status(404).json({
+          error: "AI finding not found"
+        });
+      }
+
+      // 4. Find internal officer
+      const { data: officer, error: officerError } =
+  await userSupabase
+    .from("users")
+    .select("id, role")
+    .eq("supabase_auth_id", req.user.id)
+    .single();
+
+      if (officerError || !officer) {
+        return res.status(403).json({
+          error: "User is not registered as an officer"
+        });
+      }
+
+      if (
+        officer.role !== "INSPECTOR" &&
+        officer.role !== "SUPERVISOR"
+      ) {
+        return res.status(403).json({
+          error: "Insufficient permissions"
+        });
+      }
+
+      // 5. Update verification
+      const updateData = {
+        verification_status: verificationStatus,
+        officer_id: officer.id,
+        corrected_at: new Date().toISOString()
+      };
+
+      if (
+        verificationStatus === "CORRECTED" &&
+        officerValue !== undefined
+      ) {
+        updateData.officer_value = officerValue;
+      }
+
+      if (verificationStatus === "VERIFIED") {
+        updateData.officer_value = currentFinding.ai_value;
+      }
+
+      const { data: updatedFinding, error: updateError } =
+        await userSupabase
+          .from("extracted_fields")
+          .update(updateData)
+          .eq("id", findingId)
+          .eq("inspection_id", inspectionId)
+          .select(`
+            id,
+            inspection_id,
+            field_name,
+            ai_value,
+            ai_confidence,
+            officer_value,
+            officer_id,
+            corrected_at,
+            verification_status
+          `)
+          .single();
+
+      if (updateError) {
+        console.error("Verification update error:", updateError);
+
+        return res.status(500).json({
+          error: "Failed to verify AI finding",
+          details: updateError.message
+        });
+      }
+
+      return res.status(200).json({
+        message: "AI finding verified successfully",
+        verification: updatedFinding
+      });
+
+    } catch (error) {
+      console.error("Verification API error:", error);
+
+      return res.status(500).json({
+        error: "Internal server error"
+      });
+    }
+  }
+);
+
 module.exports = router;
