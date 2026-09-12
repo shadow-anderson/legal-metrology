@@ -1,15 +1,14 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import { normalizeRule } from "./ruleNormalizer.js";
+const fs = require("fs");
+const path = require("path");
+const { normalizeRule } = require("./ruleNormalizer");
 
-const currentFile = fileURLToPath(import.meta.url);
 const repositoryRoot = path.resolve(
-  path.dirname(currentFile),
+  __dirname,
   "..",
   "..",
   ".."
 );
+
 const rulesRoot = path.join(repositoryRoot, "rules");
 const rulesPath = path.join(rulesRoot, "definitions");
 
@@ -24,7 +23,7 @@ const readJson = (filePath) => {
   }
 };
 
-export const loadAllRules = () => {
+const loadAllRules = () => {
 
   const files = fs
     .readdirSync(rulesPath)
@@ -43,7 +42,7 @@ export const loadAllRules = () => {
   return rules;
 };
 
-export const loadRulePack = () => {
+const loadRulePack = () => {
   const manifest = readJson(path.join(rulesRoot, "manifest.json"));
   const schedulesPath = path.join(rulesRoot, "schedules");
   const testCasesPath = path.join(rulesRoot, "test-cases");
@@ -63,4 +62,9 @@ export const loadRulePack = () => {
     schedules,
     testCases
   };
+};
+
+module.exports = {
+  loadAllRules,
+  loadRulePack
 };

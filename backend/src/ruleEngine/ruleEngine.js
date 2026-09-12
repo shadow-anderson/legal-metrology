@@ -1,18 +1,18 @@
-import { evaluateCheck } from "./checkEvaluator.js";
+const { evaluateCheck } = require("./checkEvaluator");
 
-import {
+const {
   createRuleResult
-} from "../resultGenerator/ruleResult.js";
-import {
+} = require("../resultGenerator/ruleResult");
+const {
   normalizeInspectionData
-} from "../inspections/inspectionAdapter.js";
-import {
+} = require("../inspections/inspectionAdapter");
+const {
   createComplianceSummary
-} from "./complianceSummary.js";
-import { assertValidRuleResult } from "../resultGenerator/schemaValidator.js";
+} = require("./complianceSummary");
+const { assertValidRuleResult } = require("../resultGenerator/schemaValidator");
 
 
-export const executeRuleEngine = (
+const executeRuleEngine = (
   appliedRules,
   productData,
   inspectionId,
@@ -221,3 +221,5 @@ export const executeRuleEngine = (
     complianceSummary
   };
 };
+
+module.exports = { executeRuleEngine };

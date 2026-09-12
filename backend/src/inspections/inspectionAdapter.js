@@ -1,7 +1,7 @@
-import {
+const {
   createExtractedFieldMap,
   getExtractedField
-} from "./fieldResolver.js";
+} = require("./fieldResolver");
 
 
 // ================================================
@@ -444,7 +444,7 @@ const normalizeAIOutput = (inspection) => {
 // MAIN INSPECTION ADAPTER
 // ================================================
 
-export const normalizeInspectionData = (
+const normalizeInspectionData = (
   inspection
 ) => {
 
@@ -962,3 +962,5 @@ export const normalizeInspectionData = (
   };
 
 };
+
+module.exports = { normalizeInspectionData };

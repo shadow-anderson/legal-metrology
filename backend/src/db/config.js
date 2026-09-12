@@ -1,3 +1,5 @@
-import "dotenv/config";
+require("dotenv/config");
 
-export const PORT = Number(process.env.PORT || 5001);
+const PORT = Number(process.env.PORT || 5001);
+
+module.exports = { PORT };

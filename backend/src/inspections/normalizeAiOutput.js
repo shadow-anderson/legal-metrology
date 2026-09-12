@@ -2,7 +2,7 @@
 // NORMALIZE AI OUTPUT FOR RULE ENGINE
 // ==========================================
 
-export const normalizeAiOutput = (aiOutput = {}) => {
+const normalizeAiOutput = (aiOutput = {}) => {
   const product = aiOutput?.product || {};
 
   // ==========================================
@@ -666,3 +666,5 @@ const getPhysicalForm = (
   return "UNKNOWN";
 
 };
+
+module.exports = { normalizeAiOutput };

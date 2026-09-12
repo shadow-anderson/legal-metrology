@@ -1,4 +1,4 @@
-import fourthSchedule from "../../../rules/schedules/fourth-schedule.json" with { type: "json" };
+const fourthSchedule = require("../../../rules/schedules/fourth-schedule.json");
 
 
 // ==========================================
@@ -20,7 +20,7 @@ const normalizeText = (value) => {
 // FIND FOURTH SCHEDULE ENTRY
 // ==========================================
 
-export const findFourthScheduleEntry = (commodityName) => {
+const findFourthScheduleEntry = (commodityName) => {
 
   if (!commodityName) {
     return null;
@@ -111,3 +111,5 @@ export const findFourthScheduleEntry = (commodityName) => {
   return keywordMatch || null;
 
 };
+
+module.exports = { findFourthScheduleEntry };

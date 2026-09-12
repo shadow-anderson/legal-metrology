@@ -1,12 +1,11 @@
-import assert from "node:assert/strict";
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import { loadRulePack } from "./ruleLoader.js";
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const { loadRulePack } = require("./ruleLoader");
 
 const pack = loadRulePack();
 const repositoryRoot = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
+  __dirname,
   "..",
   "..",
   ".."

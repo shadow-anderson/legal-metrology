@@ -1,4 +1,4 @@
-import { getNestedValue } from "../utils/getNestedValue.js";
+const { getNestedValue } = require("../utils/getNestedValue");
 
 
 // ==========================================
@@ -534,7 +534,7 @@ const evaluateCondition = (
 // MAIN APPLICABILITY EVALUATOR
 // ==========================================
 
-export const evaluateApplicability = (
+const evaluateApplicability = (
   rule,
   productData
 ) => {
@@ -726,7 +726,7 @@ export const evaluateApplicability = (
 // BACKWARD COMPATIBILITY
 // ==========================================
 
-export const isRuleApplicable = (
+const isRuleApplicable = (
   rule,
   productData
 ) => {
@@ -740,4 +740,9 @@ export const isRuleApplicable = (
 
   return result.applicable;
 
+};
+
+module.exports = {
+  evaluateApplicability,
+  isRuleApplicable
 };

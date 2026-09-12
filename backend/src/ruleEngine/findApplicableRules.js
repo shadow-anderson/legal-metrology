@@ -1,20 +1,20 @@
-import {
+const {
   loadAllRules,
   loadRulePack
-} from "./ruleLoader.js";
+} = require("./ruleLoader");
 
-import {
+const {
   evaluateApplicability
-} from "./applicabilityEngine.js";
+} = require("./applicabilityEngine");
 
-import {
+const {
   createApplicabilityResult
-} from "../resultGenerator/applicabilityResult.js";
+} = require("../resultGenerator/applicabilityResult");
 
-import {
+const {
   normalizeInspectionData
-} from "../inspections/inspectionAdapter.js";
-import { assertValidApplicabilityResult } from "../resultGenerator/schemaValidator.js";
+} = require("../inspections/inspectionAdapter");
+const { assertValidApplicabilityResult } = require("../resultGenerator/schemaValidator");
 
 const toApplicabilityData = (inspectionData) => {
   if (
@@ -110,7 +110,7 @@ const collectSchedules = (applicableRules, rulePack) => {
 // FIND APPLICABLE RULES
 // ================================================
 
-export const findApplicableRules = (
+const findApplicableRules = (
   inspectionData,
   inspectionId
 ) => {
@@ -406,3 +406,5 @@ export const findApplicableRules = (
   return { ...contractResult, appliedRuleDefinitions: applicableRules };
 
 };
+
+module.exports = { findApplicableRules };

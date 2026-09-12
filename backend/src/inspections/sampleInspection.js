@@ -117,4 +117,4 @@ const sampleInspection = {
   }
 };
 
-export default sampleInspection;
+module.exports = sampleInspection;

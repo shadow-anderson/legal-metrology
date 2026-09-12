@@ -1,6 +1,6 @@
-import { randomUUID } from "crypto";
+const { randomUUID } = require("crypto");
 
-export const createApplicabilityResult = ({
+const createApplicabilityResult = ({
   inspectionId,
   status,
   contextSnapshot = {},
@@ -34,4 +34,8 @@ export const createApplicabilityResult = ({
     evaluatedAt:
       new Date().toISOString()
   };
+};
+
+module.exports = {
+  createApplicabilityResult
 };

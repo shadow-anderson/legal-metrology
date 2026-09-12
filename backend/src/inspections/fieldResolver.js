@@ -61,7 +61,7 @@ const resolveRawValue = (field) => {
 // RESOLVE FIELD VALUE
 // ================================================
 
-export const resolveFieldValue = (field) => {
+const resolveFieldValue = (field) => {
 
   if (!field) {
 
@@ -165,7 +165,7 @@ export const resolveFieldValue = (field) => {
 // COMPATIBILITY EXPORT
 // ================================================
 
-export const resolveExtractedField =
+const resolveExtractedField =
   resolveFieldValue;
 
 
@@ -173,7 +173,7 @@ export const resolveExtractedField =
 // CREATE FIELD MAP
 // ================================================
 
-export const createExtractedFieldMap = (
+const createExtractedFieldMap = (
   extractedFields = []
 ) => {
 
@@ -210,7 +210,7 @@ export const createExtractedFieldMap = (
 // GET FIELD
 // ================================================
 
-export const getExtractedField = (
+const getExtractedField = (
   fieldMap = {},
   fieldName
 ) =>
@@ -228,3 +228,10 @@ export const getExtractedField = (
     requiresVerification: true
 
   };
+
+module.exports = {
+  resolveFieldValue,
+  resolveExtractedField,
+  createExtractedFieldMap,
+  getExtractedField
+};

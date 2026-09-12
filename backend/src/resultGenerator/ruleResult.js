@@ -1,4 +1,4 @@
-import crypto from "crypto";
+const crypto = require("crypto");
 
 const VALID_STATUSES = [
   "PASS",
@@ -25,7 +25,7 @@ const asSchemaObject = (value) => (
     : { value }
 );
 
-export const createRuleResult = ({
+const createRuleResult = ({
   inspectionId,
   ruleId,
   ruleVersion,
@@ -106,4 +106,8 @@ export const createRuleResult = ({
   }
 
   return result;
+};
+
+module.exports = {
+  createRuleResult
 };

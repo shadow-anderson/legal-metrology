@@ -1,7 +1,7 @@
-import assert from "node:assert/strict";
-import { findApplicableRules } from "./findApplicableRules.js";
-import { executeRuleEngine } from "./ruleEngine.js";
-import sampleInspection from "../inspections/sampleInspection.js";
+const assert = require("node:assert/strict");
+const { findApplicableRules } = require("./findApplicableRules");
+const { executeRuleEngine } = require("./ruleEngine");
+const sampleInspection = require("../inspections/sampleInspection");
 
 const inspectionId = "550e8400-e29b-41d4-a716-446655440100";
 

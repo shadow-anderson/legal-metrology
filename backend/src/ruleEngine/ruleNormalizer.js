@@ -1,6 +1,6 @@
-import {
+const {
   normalizeInspectionData
-} from "../inspections/inspectionAdapter.js";
+} = require("../inspections/inspectionAdapter");
 
 
 // ================================================
@@ -421,7 +421,7 @@ const normalizeChecks = (
 // MAIN RULE NORMALIZER
 // ================================================
 
-export const normalizeRule = (
+const normalizeRule = (
 
   rule
 
@@ -649,8 +649,7 @@ export const normalizeRule = (
 // EXPORT
 // ================================================
 
-export {
-
+module.exports = {
+  normalizeRule,
   normalizeInspectionData
-
 };

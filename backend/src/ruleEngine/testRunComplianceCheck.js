@@ -2,14 +2,14 @@
 // TEST COMPLETE RULE ENGINE PIPELINE
 // ================================================
 
-import assert from "node:assert/strict";
+const assert = require("node:assert/strict");
 
-import {
+const {
   runComplianceCheck
-} from "./runComplianceCheck.js";
+} = require("./runComplianceCheck");
 
-import sampleInspection
-  from "../inspections/sampleInspection.js";
+const sampleInspection
+  = require("../inspections/sampleInspection");
 
 
 // ================================================

@@ -1,13 +1,13 @@
-import assert from "node:assert/strict";
+const assert = require("node:assert/strict");
 
-import { findApplicableRules } from "./findApplicableRules.js";
-import { executeRuleEngine } from "./ruleEngine.js";
-import { createComplianceSummary } from "./complianceSummary.js";
-import {
+const { findApplicableRules } = require("./findApplicableRules");
+const { executeRuleEngine } = require("./ruleEngine");
+const { createComplianceSummary } = require("./complianceSummary");
+const {
   normalizeInspectionData
-} from "./ruleNormalizer.js";
+} = require("./ruleNormalizer");
 
-import sampleInspection from "../inspections/sampleInspection.js";
+const sampleInspection = require("../inspections/sampleInspection");
 
 
 // ================================================

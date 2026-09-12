@@ -1,7 +1,7 @@
-import { loadAllRules } from "./ruleLoader.js";
-import {
+const { loadAllRules } = require("./ruleLoader");
+const {
   evaluateApplicability
-} from "./applicabilityEngine.js";
+} = require("./applicabilityEngine");
 
 const rules = loadAllRules();
 

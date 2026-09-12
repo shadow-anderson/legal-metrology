@@ -5,7 +5,7 @@ const STATUS_KEYS = [
   "REQUIRES_VERIFICATION"
 ];
 
-export const createComplianceSummary = (
+const createComplianceSummary = (
   results = [],
   totalRulesExecuted = new Set(results.map((result) => result.ruleId)).size,
   inspectionId = results[0]?.inspectionId
@@ -36,6 +36,9 @@ export const createComplianceSummary = (
   };
 };
 
-export const summarizeCompliance = createComplianceSummary;
+const summarizeCompliance = createComplianceSummary;
 
-export default createComplianceSummary;
+module.exports = {
+  createComplianceSummary,
+  summarizeCompliance
+};

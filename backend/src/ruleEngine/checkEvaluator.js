@@ -1,8 +1,8 @@
-import { getNestedValue } from "../utils/getNestedValue.js";
+const { getNestedValue } = require("../utils/getNestedValue");
 
-import {
+const {
   findFourthScheduleEntry
-} from "../utils/scheduleLookup.js";
+} = require("../utils/scheduleLookup");
 
 
 // ==========================================
@@ -2457,7 +2457,7 @@ const evaluateManualInspectionCheck = (
 // MAIN CHECK EVALUATOR
 // ==========================================
 
-export const evaluateCheck = (
+const evaluateCheck = (
   check,
   productData
 ) => {
@@ -2686,4 +2686,8 @@ export const evaluateCheck = (
 
   }
 
+};
+
+module.exports = {
+  evaluateCheck
 };

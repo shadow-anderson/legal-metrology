@@ -2,32 +2,32 @@
 // RULE ENGINE PIPELINE
 // ================================================
 
-import {
+const {
   normalizeInspectionData
-} from "./ruleNormalizer.js";
+} = require("./ruleNormalizer");
 
-import {
+const {
   findApplicableRules
-} from "./findApplicableRules.js";
+} = require("./findApplicableRules");
 
-import {
+const {
   executeRuleEngine
-} from "./ruleEngine.js";
+} = require("./ruleEngine");
 
-import {
+const {
   validateRuleEngineRequest
-} from "../inspections/ruleEngineRequestValidation.js";
+} = require("../inspections/ruleEngineRequestValidation");
 
-import {
+const {
   normalizeAiOutput
-} from "../inspections/normalizeAiOutput.js";
+} = require("../inspections/normalizeAiOutput");
 
 
 // ================================================
 // MAIN FUNCTION
 // ================================================
 
-export const runComplianceCheck = (
+const runComplianceCheck = (
   inspectionData
 ) => {
 
@@ -282,3 +282,5 @@ export const runComplianceCheck = (
   };
 
 };
+
+module.exports = { runComplianceCheck };

@@ -1,4 +1,4 @@
-import Joi from "joi";
+const Joi = require("joi");
 
 
 // ==========================================
@@ -192,7 +192,7 @@ const scaleSchema = Joi.object({
 // This matches the new AI service output
 // ==========================================
 
-export const aiOutputSchema = Joi.object({
+const aiOutputSchema = Joi.object({
 
   product: Joi.object({
 
@@ -252,7 +252,7 @@ export const aiOutputSchema = Joi.object({
 // aiOutput belongs to AI Service
 // ==========================================
 
-export const ruleEngineRequestSchema = Joi.object({
+const ruleEngineRequestSchema = Joi.object({
 
   inspectionId: uuidSchema
     .required(),
@@ -267,7 +267,7 @@ export const ruleEngineRequestSchema = Joi.object({
 // VALIDATION FUNCTION
 // ==========================================
 
-export const validateRuleEngineRequest = (
+const validateRuleEngineRequest = (
   data
 ) => {
 
@@ -302,4 +302,10 @@ export const validateRuleEngineRequest = (
 
   return value;
 
+};
+
+module.exports = {
+  aiOutputSchema,
+  ruleEngineRequestSchema,
+  validateRuleEngineRequest
 };

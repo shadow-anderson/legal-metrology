@@ -1,8 +1,9 @@
-import express from "express";
-import cors from "cors";
-import "dotenv/config";
-import { PORT } from "./src/db/config.js";
-import { runComplianceCheck } from "./src/ruleEngine/runComplianceCheck.js";
+const express = require("express");
+const cors = require("cors");
+require("dotenv/config");
+
+const { PORT } = require("./src/db/config");
+const { runComplianceCheck } = require("./src/ruleEngine/runComplianceCheck");
 
 const app = express();
 
@@ -38,4 +39,4 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-export default app;
+module.exports = app;

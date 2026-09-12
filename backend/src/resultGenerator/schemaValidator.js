@@ -1,11 +1,9 @@
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import Ajv2020 from "ajv/dist/2020.js";
-import addFormats from "ajv-formats";
+const fs = require("node:fs");
+const path = require("node:path");
+const Ajv2020 = require("ajv/dist/2020");
+const addFormats = require("ajv-formats");
 
-const currentFile = fileURLToPath(import.meta.url);
-const contractsRoot = path.resolve(path.dirname(currentFile), "..", "..", "..", "packages", "contracts");
+const contractsRoot = path.resolve(__dirname, "..", "..", "..", "packages", "contracts");
 const readSchema = (fileName) => JSON.parse(
   fs.readFileSync(path.join(contractsRoot, fileName), "utf8")
 );
@@ -34,8 +32,13 @@ const assertValid = (validator, value, label) => {
   return value;
 };
 
-export const assertValidApplicabilityResult = (value) =>
+const assertValidApplicabilityResult = (value) =>
   assertValid(validateApplicability, value, "Applicability result");
 
-export const assertValidRuleResult = (value) =>
+const assertValidRuleResult = (value) =>
   assertValid(validateRule, value, "Rule result");
+
+module.exports = {
+  assertValidApplicabilityResult,
+  assertValidRuleResult
+};

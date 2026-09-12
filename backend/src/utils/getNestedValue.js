@@ -1,4 +1,4 @@
-export const getNestedValue = (object, path) => {
+const getNestedValue = (object, path) => {
   return path
     .split(".")
     .reduce((current, key) => {
@@ -9,3 +9,5 @@ export const getNestedValue = (object, path) => {
       return current[key];
     }, object);
 };
+
+module.exports = { getNestedValue };
