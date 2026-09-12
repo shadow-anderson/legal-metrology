@@ -1,9 +1,11 @@
 const express = require("express");
 const { createClient } = require("@supabase/supabase-js");
+
 const supabase = require("../db/supabase");
 const requireAuth = require("../auth/auth.middleware");
 
 const router = express.Router();
+
 
 // =====================================================
 // GET INSPECTION RESULTS
@@ -21,10 +23,16 @@ router.get(
       console.log("RESULTS USER:", req.user?.id);
       console.log("RESULTS INSPECTION ID:", inspectionId);
 
-      // Use the authenticated user's JWT for database queries
+      // =====================================================
+      // 1. Get authenticated user's JWT
+      // =====================================================
+
       const authHeader = req.headers.authorization;
 
-      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      if (
+        !authHeader ||
+        !authHeader.startsWith("Bearer ")
+      ) {
         return res.status(401).json({
           error: "Missing authorization token"
         });
@@ -32,6 +40,7 @@ router.get(
 
       const token = authHeader.split(" ")[1];
 
+      // Use authenticated user's JWT for RLS-protected queries
       const userSupabase = createClient(
         process.env.SUPABASE_URL,
         process.env.SUPABASE_KEY,
@@ -44,12 +53,13 @@ router.get(
         }
       );
 
+
       // =====================================================
-      // 1. Get inspection
+      // 2. Get inspection
       // =====================================================
 
       const {
-        data: inspectionRows,
+        data: inspection,
         error: inspectionError
       } = await userSupabase
         .from("inspections")
@@ -65,7 +75,7 @@ router.get(
           updated_at
         `)
         .eq("id", inspectionId)
-        .limit(1);
+        .maybeSingle();
 
       if (inspectionError) {
         console.error(
@@ -74,54 +84,92 @@ router.get(
         );
 
         return res.status(500).json({
-          error: "Inspection query failed",
-          details: inspectionError.message
+          error: "Inspection query failed"
         });
       }
 
-      const inspection = inspectionRows?.[0];
-
       if (!inspection) {
-        console.error(
-          "RESULTS INSPECTION NULL:",
-          inspectionId
-        );
-
         return res.status(404).json({
           error: "Inspection not found"
         });
       }
 
+
       // =====================================================
-      // 2. Get product
+      // 3. Check internal officer
       // =====================================================
 
       const {
-        data: product,
-        error: productError
+        data: officer,
+        error: officerError
       } = await userSupabase
-        .from("products")
-        .select(`
-          id,
-          name,
-          category,
-          commodity_code,
-          brand_name,
-          created_at,
-          updated_at
-        `)
-        .eq("id", inspection.product_id)
+        .from("users")
+        .select("id, role")
+        .eq("supabase_auth_id", req.user.id)
         .maybeSingle();
 
-      if (productError) {
+      if (officerError) {
         console.error(
-          "Product lookup error:",
-          productError
+          "Officer lookup error:",
+          officerError
         );
+
+        return res.status(500).json({
+          error: "Officer lookup failed"
+        });
       }
 
+      if (!officer) {
+        return res.status(403).json({
+          error: "User is not registered as an officer"
+        });
+      }
+
+
       // =====================================================
-      // 3. Get images
+      // 4. Check inspection ownership
+      // =====================================================
+
+      if (inspection.officer_id !== officer.id) {
+        return res.status(403).json({
+          error:
+            "You are not authorized to view this inspection"
+        });
+      }
+
+
+      // =====================================================
+      // 5. Get product
+      // =====================================================
+
+      let product = null;
+
+      if (inspection.product_id) {
+        const {
+          data: productData,
+          error: productError
+        } = await userSupabase
+          .from("products")
+          .select(`
+      id,
+      name,
+      category,
+      commodity_code,
+      brand_name,
+      created_at,
+      updated_at
+    `)
+          .eq("id", inspection.product_id)
+          .maybeSingle();
+
+        if (productError) {
+          console.error("Product lookup error:", productError);
+        }
+
+        product = productData || null;
+      }
+      // =====================================================
+      // 6. Get images
       // =====================================================
 
       const {
@@ -140,10 +188,15 @@ router.get(
           "Images lookup error:",
           imagesError
         );
+
+        return res.status(500).json({
+          error: "Images lookup failed"
+        });
       }
 
+
       // =====================================================
-      // 4. Get extracted AI fields
+      // 7. Get extracted AI fields
       // =====================================================
 
       const {
@@ -162,10 +215,15 @@ router.get(
           "Extracted fields lookup error:",
           fieldsError
         );
+
+        return res.status(500).json({
+          error: "AI findings lookup failed"
+        });
       }
 
+
       // =====================================================
-      // 5. Get applicability result
+      // 8. Get applicability result
       // =====================================================
 
       const {
@@ -182,10 +240,15 @@ router.get(
           "Applicability lookup error:",
           applicabilityError
         );
+
+        return res.status(500).json({
+          error: "Applicability lookup failed"
+        });
       }
 
+
       // =====================================================
-      // 6. Get rule results
+      // 9. Get rule results
       // =====================================================
 
       const {
@@ -204,10 +267,15 @@ router.get(
           "Rule results lookup error:",
           ruleResultsError
         );
+
+        return res.status(500).json({
+          error: "Rule results lookup failed"
+        });
       }
 
+
       // =====================================================
-      // 7. Get evidence
+      // 10. Get evidence
       // =====================================================
 
       const {
@@ -226,10 +294,15 @@ router.get(
           "Evidence lookup error:",
           evidenceError
         );
+
+        return res.status(500).json({
+          error: "Evidence lookup failed"
+        });
       }
 
+
       // =====================================================
-      // 8. Get measurements
+      // 11. Get measurements
       // =====================================================
 
       const {
@@ -248,38 +321,62 @@ router.get(
           "Measurements lookup error:",
           measurementsError
         );
+
+        return res.status(500).json({
+          error: "Measurements lookup failed"
+        });
       }
 
+
       // =====================================================
-      // 9. Return Results
+      // 12. Return complete inspection results
       // =====================================================
 
       return res.status(200).json({
         inspection: {
           id: inspection.id,
-          productId: inspection.product_id,
+
+          // Can be null during early processing stage
+          productId: inspection.product_id || null,
+
           officerId: inspection.officer_id,
-          inspectionType: inspection.inspection_type,
+
+          inspectionType:
+            inspection.inspection_type,
+
           status: inspection.status,
-          overallResult: inspection.overall_result || null,
-          context: inspection.context_json,
-          createdAt: inspection.created_at,
-          updatedAt: inspection.updated_at
+
+          overallResult:
+            inspection.overall_result || null,
+
+          context:
+            inspection.context_json || {},
+
+          createdAt:
+            inspection.created_at,
+
+          updatedAt:
+            inspection.updated_at
         },
 
-        product: product || null,
+        product: product,
 
         images: images || [],
 
-        aiFindings: extractedFields || [],
+        aiFindings:
+          extractedFields || [],
 
-        applicability: applicability || null,
+        applicability:
+          applicability || null,
 
-        ruleResults: ruleResults || [],
+        ruleResults:
+          ruleResults || [],
 
-        evidence: evidence || [],
+        evidence:
+          evidence || [],
 
-        measurements: measurements || []
+        measurements:
+          measurements || []
       });
 
     } catch (error) {
@@ -295,4 +392,5 @@ router.get(
   }
 );
 
-module.exports = router;
+
+module.exports = router;                                                                                                                                                                                                                                                                                          
