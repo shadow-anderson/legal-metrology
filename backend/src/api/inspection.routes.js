@@ -192,14 +192,8 @@ router.post(
     try {
       const inspectionId = req.params.id;
 
-      const {
-        filePath,
-        viewType,
-        mimeType,
-        fileSizeBytes,
-        widthPx,
-        heightPx,
-      } = req.body;
+      const { filePath, viewType, mimeType, fileSizeBytes, widthPx, heightPx } =
+        req.body;
 
       // 1. Validate required metadata
       if (
@@ -492,7 +486,11 @@ router.post("/inspections/:id/process", requireAuth, async (req, res) => {
     // 11. Return queued job
     return res.status(202).json({
       message: "Inspection processing job queued",
-      inspectionId,
+      inspection: {
+        id: inspection.id,
+        status: "PROCESSING",
+        overallResult: inspection.overall_result ?? null,
+      },
       job: {
         id: job.id,
         status: job.status,
@@ -509,340 +507,158 @@ router.post("/inspections/:id/process", requireAuth, async (req, res) => {
 });
 
 // =====================================================
-// VERIFY AI FINDING
-// POST /api/inspections/:id/verification
-// =====================================================
-
-router.post(
-  "/inspections/:id/verification",
-  requireAuth,
-  async (req, res) => {
-    try {
-      const inspectionId = req.params.id;
-
-      const { findingId, verificationStatus, officerValue } = req.body;
-
-      // 1. Validate request
-      if (!findingId || !verificationStatus) {
-        return res.status(400).json({
-          error: "findingId and verificationStatus are required",
-        });
-      }
-
-      // 2. Validate verification status
-      const allowedStatuses = ["VERIFIED", "CORRECTED", "REJECTED"];
-
-      if (!allowedStatuses.includes(verificationStatus)) {
-        return res.status(400).json({
-          error:
-            "verificationStatus must be VERIFIED, CORRECTED or REJECTED",
-        });
-      }
-
-      // 3. Find internal officer
-      const { data: officer, error: officerError } = await supabase
-        .from("users")
-        .select("id, role")
-        .eq("supabase_auth_id", req.user.id)
-        .single();
-
-      if (officerError || !officer) {
-        return res.status(403).json({
-          error: "User is not registered as an officer",
-        });
-      }
-
-      // 4. Check officer role
-      if (officer.role !== "INSPECTOR" && officer.role !== "SUPERVISOR") {
-        return res.status(403).json({
-          error: "Insufficient permissions",
-        });
-      }
-
-      // 5. Check inspection exists and belongs to officer
-      const { data: inspection, error: inspectionError } = await supabase
-        .from("inspections")
-        .select("id, officer_id")
-        .eq("id", inspectionId)
-        .single();
-
-      if (inspectionError || !inspection) {
-        return res.status(404).json({
-          error: "Inspection not found",
-        });
-      }
-
-      if (inspection.officer_id !== officer.id) {
-        return res.status(403).json({
-          error: "You are not authorized to verify this inspection",
-        });
-      }
-
-      // 6. Find AI finding
-      const { data: finding, error: findingError } = await supabase
-        .from("extracted_fields")
-        .select(
-          `
-          id,
-          inspection_id,
-          field_name,
-          ai_value,
-          ai_confidence,
-          officer_value,
-          officer_id,
-          verification_status
-        `,
-        )
-        .eq("id", findingId)
-        .eq("inspection_id", inspectionId)
-        .single();
-
-      if (findingError || !finding) {
-        return res.status(404).json({
-          error: "AI finding not found",
-        });
-      }
-
-      // 7. Prepare update
-      const updateData = {
-        verification_status: verificationStatus,
-        officer_id: officer.id,
-        corrected_at: new Date().toISOString(),
-      };
-
-      if (
-        verificationStatus === "CORRECTED" &&
-        officerValue !== undefined
-      ) {
-        updateData.officer_value = officerValue;
-      }
-
-      if (verificationStatus === "VERIFIED") {
-        updateData.officer_value = finding.ai_value;
-      }
-
-      // 8. Update verification
-      const { data: updatedFinding, error: updateError } = await supabase
-        .from("extracted_fields")
-        .update(updateData)
-        .eq("id", findingId)
-        .eq("inspection_id", inspectionId)
-        .select(
-          `
-          id,
-          inspection_id,
-          field_name,
-          ai_value,
-          ai_confidence,
-          officer_value,
-          officer_id,
-          corrected_at,
-          verification_status
-        `,
-        )
-        .single();
-
-      if (updateError) {
-        console.error("Verification update error:", updateError);
-
-        return res.status(500).json({
-          error: "Failed to verify AI finding",
-        });
-      }
-
-      // 9. Return verification
-      return res.status(200).json({
-        message: "AI finding verified successfully",
-        verification: {
-          id: updatedFinding.id,
-          inspectionId: updatedFinding.inspection_id,
-          fieldName: updatedFinding.field_name,
-          aiValue: updatedFinding.ai_value,
-          aiConfidence: updatedFinding.ai_confidence,
-          officerValue: updatedFinding.officer_value,
-          officerId: updatedFinding.officer_id,
-          correctedAt: updatedFinding.corrected_at,
-          verificationStatus: updatedFinding.verification_status,
-        },
-      });
-    } catch (error) {
-      console.error("Verification API error:", error);
-
-      return res.status(500).json({
-        error: "Internal server error",
-      });
-    }
-  },
-);
-
-// =====================================================
 // VERIFY AI FINDING - HLD ROUTE
 // POST /api/inspections/:id/verify
-//
-// Kept as an alias for the current /verification route.
 // =====================================================
 
-router.post(
-  "/inspections/:id/verify",
-  requireAuth,
-  async (req, res) => {
-    try {
-      const inspectionId = req.params.id;
+router.post("/inspections/:id/verify", requireAuth, async (req, res) => {
+  try {
+    const inspectionId = req.params.id;
 
-      const { findingId, verificationStatus, officerValue } = req.body;
+    const { findingId, verificationStatus, officerValue } = req.body;
 
-      // 1. Validate request
-      if (!findingId || !verificationStatus) {
-        return res.status(400).json({
-          error: "findingId and verificationStatus are required",
-        });
-      }
-
-      // 2. Validate verification status
-      const allowedStatuses = ["VERIFIED", "CORRECTED", "REJECTED"];
-
-      if (!allowedStatuses.includes(verificationStatus)) {
-        return res.status(400).json({
-          error:
-            "verificationStatus must be VERIFIED, CORRECTED or REJECTED",
-        });
-      }
-
-      // 3. Find internal officer
-      const { data: officer, error: officerError } = await supabase
-        .from("users")
-        .select("id, role")
-        .eq("supabase_auth_id", req.user.id)
-        .single();
-
-      if (officerError || !officer) {
-        return res.status(403).json({
-          error: "User is not registered as an officer",
-        });
-      }
-
-      // 4. Check role
-      if (officer.role !== "INSPECTOR" && officer.role !== "SUPERVISOR") {
-        return res.status(403).json({
-          error: "Insufficient permissions",
-        });
-      }
-
-      // 5. Check inspection ownership
-      const { data: inspection, error: inspectionError } = await supabase
-        .from("inspections")
-        .select("id, officer_id")
-        .eq("id", inspectionId)
-        .single();
-
-      if (inspectionError || !inspection) {
-        return res.status(404).json({
-          error: "Inspection not found",
-        });
-      }
-
-      if (inspection.officer_id !== officer.id) {
-        return res.status(403).json({
-          error: "You are not authorized to verify this inspection",
-        });
-      }
-
-      // 6. Find AI finding
-      const { data: finding, error: findingError } = await supabase
-        .from("extracted_fields")
-        .select(
-          `
-          id,
-          inspection_id,
-          field_name,
-          ai_value,
-          ai_confidence,
-          officer_value,
-          officer_id,
-          verification_status
-        `,
-        )
-        .eq("id", findingId)
-        .eq("inspection_id", inspectionId)
-        .single();
-
-      if (findingError || !finding) {
-        return res.status(404).json({
-          error: "AI finding not found",
-        });
-      }
-
-      // 7. Prepare update
-      const updateData = {
-        verification_status: verificationStatus,
-        officer_id: officer.id,
-        corrected_at: new Date().toISOString(),
-      };
-
-      if (
-        verificationStatus === "CORRECTED" &&
-        officerValue !== undefined
-      ) {
-        updateData.officer_value = officerValue;
-      }
-
-      if (verificationStatus === "VERIFIED") {
-        updateData.officer_value = finding.ai_value;
-      }
-
-      // 8. Update verification
-      const { data: updatedFinding, error: updateError } = await supabase
-        .from("extracted_fields")
-        .update(updateData)
-        .eq("id", findingId)
-        .eq("inspection_id", inspectionId)
-        .select(
-          `
-          id,
-          inspection_id,
-          field_name,
-          ai_value,
-          ai_confidence,
-          officer_value,
-          officer_id,
-          corrected_at,
-          verification_status
-        `,
-        )
-        .single();
-
-      if (updateError) {
-        console.error("Verification update error:", updateError);
-
-        return res.status(500).json({
-          error: "Failed to verify AI finding",
-        });
-      }
-
-      // 9. Return verification
-      return res.status(200).json({
-        message: "AI finding verified successfully",
-        verification: {
-          id: updatedFinding.id,
-          inspectionId: updatedFinding.inspection_id,
-          fieldName: updatedFinding.field_name,
-          aiValue: updatedFinding.ai_value,
-          aiConfidence: updatedFinding.ai_confidence,
-          officerValue: updatedFinding.officer_value,
-          officerId: updatedFinding.officer_id,
-          correctedAt: updatedFinding.corrected_at,
-          verificationStatus: updatedFinding.verification_status,
-        },
-      });
-      
-    } catch (error) {
-      console.error("Verification API error:", error);
-
-      return res.status(500).json({
-        error: "Internal server error",
+    // 1. Validate request
+    if (!findingId || !verificationStatus) {
+      return res.status(400).json({
+        error: "findingId and verificationStatus are required",
       });
     }
-  },
-);
+
+    // 2. Validate verification status
+    const allowedStatuses = ["VERIFIED", "CORRECTED", "REJECTED"];
+
+    if (!allowedStatuses.includes(verificationStatus)) {
+      return res.status(400).json({
+        error: "verificationStatus must be VERIFIED, CORRECTED or REJECTED",
+      });
+    }
+
+    // 3. Find internal officer
+    const { data: officer, error: officerError } = await supabase
+      .from("users")
+      .select("id, role")
+      .eq("supabase_auth_id", req.user.id)
+      .single();
+
+    if (officerError || !officer) {
+      return res.status(403).json({
+        error: "User is not registered as an officer",
+      });
+    }
+
+    // 4. Check role
+    if (officer.role !== "INSPECTOR" && officer.role !== "SUPERVISOR") {
+      return res.status(403).json({
+        error: "Insufficient permissions",
+      });
+    }
+
+    // 5. Check inspection ownership
+    const { data: inspection, error: inspectionError } = await supabase
+      .from("inspections")
+      .select("id, officer_id")
+      .eq("id", inspectionId)
+      .single();
+
+    if (inspectionError || !inspection) {
+      return res.status(404).json({
+        error: "Inspection not found",
+      });
+    }
+
+    if (inspection.officer_id !== officer.id) {
+      return res.status(403).json({
+        error: "You are not authorized to verify this inspection",
+      });
+    }
+
+    // 6. Find AI finding
+    const { data: finding, error: findingError } = await supabase
+      .from("extracted_fields")
+      .select(`
+        id,
+        inspection_id,
+        field_name,
+        ai_value,
+        ai_confidence,
+        officer_value,
+        officer_id,
+        verification_status
+      `)
+      .eq("id", findingId)
+      .eq("inspection_id", inspectionId)
+      .single();
+
+    if (findingError || !finding) {
+      return res.status(404).json({
+        error: "AI finding not found",
+      });
+    }
+
+    // 7. Prepare update
+    const updateData = {
+      verification_status: verificationStatus,
+      officer_id: officer.id,
+      corrected_at: new Date().toISOString(),
+    };
+
+    if (verificationStatus === "CORRECTED" && officerValue !== undefined) {
+      updateData.officer_value = officerValue;
+    }
+
+    if (verificationStatus === "VERIFIED") {
+      updateData.officer_value = finding.ai_value;
+    }
+
+    // 8. Update verification
+    const { data: updatedFinding, error: updateError } = await supabase
+      .from("extracted_fields")
+      .update(updateData)
+      .eq("id", findingId)
+      .eq("inspection_id", inspectionId)
+      .select(`
+        id,
+        inspection_id,
+        field_name,
+        ai_value,
+        ai_confidence,
+        officer_value,
+        officer_id,
+        corrected_at,
+        verification_status
+      `)
+      .single();
+
+    if (updateError) {
+      console.error("Verification update error:", updateError);
+
+      return res.status(500).json({
+        error: "Failed to verify AI finding",
+      });
+    }
+
+    // 9. Return verification
+    return res.status(200).json({
+      message: "AI finding verified successfully",
+      verification: {
+        id: updatedFinding.id,
+        inspectionId: updatedFinding.inspection_id,
+        fieldName: updatedFinding.field_name,
+        aiValue: updatedFinding.ai_value,
+        aiConfidence: updatedFinding.ai_confidence,
+        officerValue: updatedFinding.officer_value,
+        officerId: updatedFinding.officer_id,
+        correctedAt: updatedFinding.corrected_at,
+        verificationStatus: updatedFinding.verification_status,
+      },
+    });
+  } catch (error) {
+    console.error("Verification API error:", error);
+
+    return res.status(500).json({
+      error: "Internal server error",
+    });
+  }
+});
 
 module.exports = router;
