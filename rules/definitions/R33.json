@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R33",
+  "reference": "Rule 33",
+  "title": "Power to relax:",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R33_COMPLIANCE",
+      "reference": "Rule 33",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "33. Power to relax:\nThe Central Government may, after ascertaining the genuineness of the compounding of\na case or Court decision stated in the application, permit a manufacturer or packer to pack\nfor sale the packages for a reasonable period by relaxing one or more provision of these\nRules with such corrective measures as may be specified."
+}

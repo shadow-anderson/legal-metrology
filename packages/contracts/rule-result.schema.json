@@ -28,25 +28,11 @@
       "type": "string"
     },
     "observedValue": {
-  "type": [
-    "object",
-    "array",
-    "string",
-    "number",
-    "boolean",
-    "null"
-  ]
-},
-   "requiredValue": {
-  "type": [
-    "object",
-    "array",
-    "string",
-    "number",
-    "boolean",
-    "null"
-  ]
-},
+      "type": "object"
+    },
+    "requiredValue": {
+      "type": "object"
+    },
     "confidence": {
       "type": "number",
       "minimum": 0,
@@ -97,6 +83,7 @@
     "checkId",
     "status",
     "message",
+    "confidence",
     "resultSource",
     "createdAt"
   ],

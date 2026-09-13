@@ -1,0 +1,27 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R30",
+  "reference": "Rule 30",
+  "title": "Compilation of lists of manufacturers or packers and their circulation.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R30_COMPLIANCE",
+      "reference": "Rule 30",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "registration",
+    "entity",
+    "application"
+  ],
+  "source_text": "30. Compilation of lists of manufacturers or packers and their circulation. –\nThe Director or the Controller shall compile a State-wise list of the manufacturers and\npackers registered by him under rule 29 and shall circulate such list to the Controller of\nthe concerned State to enable the Controller to take, or cause to be taken, samples at the\npremises of the manufacturer or, where the manufacturer is not the packer, of the packer.\n\n\n                                CHAPTER VII-GENERAL"
+}

@@ -19,22 +19,22 @@
       "type": "object"
     },
     "applicableRules": {
-  "type": "array",
-  "items": {
-    "type": "string"
-  }
-},
-    "applicableSchedules": {
       "type": "array",
       "items": {
         "type": "string"
       }
     },
+    "applicableSchedules": {
+      "type": "array"
+    },
     "exemptions": {
       "type": "array"
     },
     "reasons": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "confirmedByOfficerId": {
       "type": [

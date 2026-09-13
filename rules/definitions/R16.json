@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R16",
+  "reference": "Rule 16",
+  "title": "Declarations to be made with regard to the number of usable sheets to be stated.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R16_COMPLIANCE",
+      "reference": "Rule 16",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "16. Declarations to be made with regard to the number of usable sheets to be stated.-\nIn the case of a package containing sheets like aluminum foil, facial tissues, waxed paper,\ntoilet paper or any other type of sheet, the declaration of quantity on the package shall\nalso include a statement as to the number of usable sheets contained in the package and\nthe dimensions of each such sheet."
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Legible contrasting English declaration",
+    "input": {
+      "legible": true,
+      "prominent": true,
+      "contrast": true,
+      "languages": [
+        "ENGLISH"
+      ],
+      "read_through_liquid": false
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Low contrast MRP",
+    "input": {
+      "legible": true,
+      "prominent": true,
+      "contrast": false,
+      "languages": [
+        "ENGLISH"
+      ],
+      "read_through_liquid": false
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Language detection uncertain",
+    "input": {
+      "legible": true,
+      "prominent": true,
+      "languages": []
+    },
+    "expected": "VERIFY"
+  }
+]

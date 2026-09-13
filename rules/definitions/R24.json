@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R24",
+  "reference": "Rule 24",
+  "title": "Declarations applicable to be made on every wholesale package",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R24_COMPLIANCE",
+      "reference": "Rule 24",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "24. Declarations applicable to be made on every wholesale package\nEvery wholesale package shall bear thereon a legible, definite, plain and conspicuous\ndeclaration as to –\n(a) The name and address of the manufacturer or importer or where the manufacturer or\nimporter is not the packer, of the packer;\n(b) the identity of the commodity contained in the package; and\n(c ) the total number of retail package contained in such wholesale package or the net\nquantity in terms of standard units of weights, measures or number of the commodity\ncontained in wholesale package;\nProvided that nothing in this rule shall apply in relation to a wholesale package if a\ndeclaration similar to the declarations specified in this rule, is required to be made on\nsuch wholesale packages by or under any other law for the time being in force.\n\n\n                                      CHAPTER IV\n                EXPORT AND IMPORT OF PACKAGED COMMODITIES"
+}

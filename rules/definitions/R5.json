@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R5",
+  "reference": "Rule 5",
+  "title": "Specific commodities to be packed and sold in recommended standard packages.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R5_COMPLIANCE",
+      "reference": "Rule 5",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "5. Specific commodities to be packed and sold in recommended standard packages. -\nThe commodities specified in the Second Schedule shall be packed for sale, distribution\nor delivery in such standard quantities as are specified in that Schedule:\n*Provided that if a commodity specified in the Second Schedule is packed in a size other\nthan that prescribed in that Schedule, a declaration that 'Not a standard pack size under\nthe Legal Metrology (Packaged Commodities) Rules, 2011 or 'non standard size under\n\n\n\n\nthe Legal Metrology (packaged Commodities) Rules, 2011' shall be made prominently on\nthe label of such package.\n* Provision will stand withdrawn wef 01.07.2012 vide GSR 748(E) dated 24.10.2011"
+}

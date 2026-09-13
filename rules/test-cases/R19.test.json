@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 19 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 19: Inspection of quantity and error in packages at the premises of the"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 19 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 19 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 19 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

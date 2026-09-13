@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R23",
+  "reference": "Rule 23",
+  "title": "Deceptive packages to be repacked or in default to be seized.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R23_COMPLIANCE",
+      "reference": "Rule 23",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "23. Deceptive packages to be repacked or in default to be seized.-\n(1) If, on the determination of the quantity contained in the sample packages, the Director\nor Controller or the Legal Metrology officer finds that the quantity contained in the\npackage agrees with the declaration of the quantity made on the package or label thereon\nbut the package is a deceptive package, he shall require the manufacturer or the packer,\nas the case may be, to repack and re-label such package and in the event of the omission\nor failure on the part of the manufacturer or the packer, as the case may be, to repack or\nre-label such deceptive package, in accordance with the standards established by or under\nthese rules, seize them, take appropriate punitive action in accordance with the Act and\ntake adequate steps for the safe custody of such packages until they are produced in a\ncourt as evidence.\nExplanation: For the purpose of this rule, 'deceptive package' means a package which is\nso designed as to deliberately given to the consumer an exaggerated or misleading\nimpression as to the quantity of the commodity contained therein, except where bigger\ndimensions of the package can be justified by the manufacturer or the packer, as the case\nmay be, on the ground that such dimensions are necessary for giving protection to the\ncommodity contained in such package or for meeting the requirements of the machine\nused for filling such package.\n\n\n\n\n\n(2) If the seized packages contain any commodity which is subject to speedy or natural\ndecay, the Director or Controller or the Legal Metrology officer shall dispose of the\ncommodity in accordance with the rules made under the Act.\n\n\n                                      CHAPTER III\n             PROVISIONS APPLICABLE TO WHOLESALE PACKAGES"
+}

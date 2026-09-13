@@ -1,0 +1,38 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R3",
+  "reference": "Rule 3",
+  "title": "Applicability of Chapter II",
+  "purpose": "Decide whether Chapter II compliance rules should apply to the package.",
+  "checks": [
+    {
+      "id": "R3_A",
+      "type": "QUANTITY_THRESHOLD",
+      "condition": "quantity_more_than_25kg_or_25litre",
+      "exceptions": [
+        "cement_in_bags_up_to_50kg",
+        "fertilizer_in_bags_up_to_50kg"
+      ],
+      "on_match": "NOT_APPLICABLE"
+    },
+    {
+      "id": "R3_B",
+      "type": "CONSUMER_TYPE",
+      "condition": "industrial_consumer_or_institutional_consumer",
+      "on_match": "NOT_APPLICABLE"
+    }
+  ],
+  "input_fields": [
+    "product.net_quantity.value",
+    "product.net_quantity.unit",
+    "product.commodity_name",
+    "product.is_industrial_consumer",
+    "product.is_institutional_consumer"
+  ]
+}

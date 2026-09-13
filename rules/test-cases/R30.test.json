@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 30 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 30: Compilation of lists of manufacturers or packers and their circulation. –"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 30 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 30 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 30 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

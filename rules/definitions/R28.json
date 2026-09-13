@@ -1,0 +1,27 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R28",
+  "reference": "Rule 28",
+  "title": "Registration of shorter address permissible.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R28_COMPLIANCE",
+      "reference": "Rule 28",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "registration",
+    "entity",
+    "application"
+  ],
+  "source_text": "28. Registration of shorter address permissible.-\n(1) It shall be lawful for any manufacturer or packer to make an application to the\nDirector or the Controller for the registration of a shorter address, in addition to the\ncomplete address referred to in sub-rule (2) of rule 27.\n(2) The Director or the Controller may, if he is satisfied after inquiry that the shorter\naddress is sufficient to enable the consumer or any other person to identify the\nmanufacturer or the packer, register such shorter address.\n(3) Where a shorter address is registered by the Director or the Controller, it shall be\nlawful for the manufacturer or packer to state such shorter address on the label of each\ncommodity pre-packed by him or it."
+}

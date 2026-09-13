@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 32 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 32: Penalty for contravention of Rules"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 32 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 32 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 32 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

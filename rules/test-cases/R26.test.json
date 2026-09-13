@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 26 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 26: Exemption in respect of certain packages.-"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 26 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 26 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 26 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

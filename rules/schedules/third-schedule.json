@@ -1,0 +1,17 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "schedule": "Third Schedule",
+  "reference": "Rule 11(4)",
+  "purpose": "Commodities whose quantity declaration may be qualified by the words 'When packed'.",
+  "commodities": [
+    "All kinds of soaps",
+    "Lotions",
+    "Cream (other than cream of milk)"
+  ]
+}

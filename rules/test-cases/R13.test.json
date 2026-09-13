@@ -1,0 +1,37 @@
+[
+  {
+    "name": "500 g",
+    "input": {
+      "value": 500,
+      "unit": "g",
+      "measurement_type": "WEIGHT"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "500 kg",
+    "input": {
+      "value": 500,
+      "unit": "kg",
+      "measurement_type": "WEIGHT"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "500 ml",
+    "input": {
+      "value": 500,
+      "unit": "ml",
+      "measurement_type": "VOLUME"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "12 dozen",
+    "input": {
+      "raw_text": "12 dozen",
+      "measurement_type": "NUMBER"
+    },
+    "expected": "FAIL"
+  }
+]

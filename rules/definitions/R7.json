@@ -1,0 +1,77 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R7",
+  "reference": "Rule 7",
+  "title": "Principal display panel - size of numerals and letters",
+  "numeral_height_rules": {
+    "weight_or_volume": [
+      {
+        "max": 200,
+        "unit": "g_or_ml",
+        "normal_mm": 1,
+        "formed_or_molded_mm": 2
+      },
+      {
+        "min_exclusive": 200,
+        "max": 500,
+        "unit": "g_or_ml",
+        "normal_mm": 2,
+        "formed_or_molded_mm": 4
+      },
+      {
+        "min_exclusive": 500,
+        "unit": "g_or_ml",
+        "normal_mm": 4,
+        "formed_or_molded_mm": 6
+      }
+    ],
+    "length_area_or_number_by_principal_display_panel_area": [
+      {
+        "max_cm2": 100,
+        "normal_mm": 1,
+        "formed_or_molded_mm": 2
+      },
+      {
+        "min_exclusive_cm2": 100,
+        "max_cm2": 500,
+        "normal_mm": 2,
+        "formed_or_molded_mm": 4
+      },
+      {
+        "min_exclusive_cm2": 500,
+        "max_cm2": 2500,
+        "normal_mm": 4,
+        "formed_or_molded_mm": 6
+      },
+      {
+        "min_exclusive_cm2": 2500,
+        "normal_mm": 6,
+        "formed_or_molded_mm": 6
+      }
+    ]
+  },
+  "letter_rules": {
+    "normal_min_height_mm": 1,
+    "blown_formed_molded_embossed_perforated_min_height_mm": 2,
+    "min_width_ratio_to_height": "1/3",
+    "width_ratio_exceptions": [
+      "numeral_1",
+      "letters_i_I_l"
+    ]
+  },
+  "special_case": "Package capacity 5 cubic centimetres or less may use a firmly affixed card or tape.",
+  "input_fields": [
+    "product.net_quantity",
+    "package.principal_display_panel_area_cm2",
+    "measurements.numeral_height_mm",
+    "measurements.letter_height_mm",
+    "measurements.declaration_style",
+    "package.capacity_cm3"
+  ]
+}

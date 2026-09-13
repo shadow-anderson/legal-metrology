@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R25",
+  "reference": "Rule 25",
+  "title": "Restrictions on sale of export packages in India.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R25_COMPLIANCE",
+      "reference": "Rule 25",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "25. Restrictions on sale of export packages in India.-\nAn export package shall not be sold in India unless the manufacturer or packer has re-\npacked or relabeled the commodity in accordance with the provisions contained in\nChapter II, and where any export package is sold in India without such re-packing or re-\nlabeling, such package shall be liable to be seized in accordance with the provisions of\nthe Act.\n\n\n                                       CHAPTER V\n\n\n\n\n                                     EXEMPTIONS"
+}

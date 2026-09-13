@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R31",
+  "reference": "Rule 31",
+  "title": "(1) Any advertisement mentioning the retail sale price of the pre-packaged",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R31_COMPLIANCE",
+      "reference": "Rule 31",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "31. (1) Any advertisement mentioning the retail sale price of the pre-packaged\ncommodity shall contain a declaration as to the net quantity or number of the commodity\ncontained in the package.\n(2)The font size of the net quantity in the advertisement shall be same as that of retail sale\nprice."
+}

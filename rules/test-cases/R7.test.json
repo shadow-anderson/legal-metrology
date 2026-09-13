@@ -1,0 +1,30 @@
+[
+  {
+    "name": "500 g normal printed numeral 2 mm",
+    "input": {
+      "quantity": 500,
+      "type": "weight_or_volume",
+      "style": "normal",
+      "measured_height_mm": 2
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Above 500 g normal printed numeral 2 mm",
+    "input": {
+      "quantity": 750,
+      "type": "weight_or_volume",
+      "style": "normal",
+      "measured_height_mm": 2
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "No physical measurement",
+    "input": {
+      "quantity": 500,
+      "measured_height_mm": null
+    },
+    "expected": "VERIFY"
+  }
+]

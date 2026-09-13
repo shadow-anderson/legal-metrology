@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 24 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 24: Declarations applicable to be made on every wholesale package"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 24 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 24 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 24 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

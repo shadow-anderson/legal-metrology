@@ -1,0 +1,27 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R27",
+  "reference": "Rule 27",
+  "title": "Registration of manufacturers, packers and importers.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R27_COMPLIANCE",
+      "reference": "Rule 27",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "registration",
+    "entity",
+    "application"
+  ],
+  "source_text": "27. Registration of manufacturers, packers and importers.-\n(1) Every individual, firm, Hindu undivided family, society, company or corporation who\nor which pre-packs or imports any commodity for sale, distribution or delivery shall\nmake an application, accompanied by a fee of rupees five hundred, to the Director or the\nController for the registration of his or its name and complete address; and every such\napplication shall be made,-\n(i) in the case of an applicant pre-packing or importing any commodity at the\ncommencement of these rules, within ninety days from such commencement; or\n(ii) in the case of any applicant who or which commences pre-packing or importing of\nany commodity after the commencement of these rules, within ninety days from the date\non which he or it commences such pre-packing.\n(2) Every application referred in sub-rule (1) shall contain the following particulars,\nnamely:-\n(a) the name of the applicant;\n\n\n\n\n(b) the complete address of the premises at which the pre-packing or import of one or\nmore commodities is made by the applicant; and\n(c) the name of the commodity or commodities pre-packed or imported by the applicant.\nExplanation: In this sub-rule, 'complete address' has the meaning assigned to it in the\nexplanation to sub-rule (1) of rule 10.'\n(3) For making any alteration in the registration certificate issued under sub rule (1), a fee\nof rupees one hundred shall be paid by the concerned manufacturer or packer or importer\nto the Director or Controller.\n(4) On receipt of the application made under sub-rule (1), the Director or Controller, who\nshall be the Registering Authority, shall-\n(a) if the application is not complete in all respects, return the same to the applicant\nwithin a period of seven working days from the date of receipt of the application;\n(b) if the application is complete in all respects, register the applicant and grant a\nregistration certificate to the applicant to that effect."
+}

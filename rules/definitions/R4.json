@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R4",
+  "reference": "Rule 4",
+  "title": "Regulation for pre-packing and sale etc. of commodities in packaged form.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R4_COMPLIANCE",
+      "reference": "Rule 4",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "4. Regulation for pre-packing and sale etc. of commodities in packaged form. –\nOn and from the commencement of these rules, no person shall pre-pack or cause or\npermit to be pre-packed any commodity for sale, distribution or delivery unless the\npackage in which the commodity is pre-packed bears thereon or, a label is securely\naffixed thereto such declarations as are required to be made under these rules.\nExplanation.- The existence of packages without the declaration of retail sale price within\nthe manufacturer’s premises shall not be construed as a violation of these rules and it\nshall be ensured that all packages leaving the premises of manufacturer for their\ndestination shall have declaration of retail sale price on them as required in these rules."
+}

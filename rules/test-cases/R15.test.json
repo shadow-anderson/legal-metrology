@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 15 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 15: Declaration with regard to dimensions and weight to be made on packages in"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 15 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 15 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 15 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

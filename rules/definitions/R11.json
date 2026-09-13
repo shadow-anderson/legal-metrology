@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R11",
+  "reference": "Rule 11",
+  "title": "General provisions relating to declaration of quantity.",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R11_COMPLIANCE",
+      "reference": "Rule 11",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "11. General provisions relating to declaration of quantity.—\n(1) In declaring the net quantity of the commodity contained in a package, the weight of\nwrappers and materials other than the commodity shall be excluded.--\n(2)Where a commodity in a package is not likely to undergo any variation in weight or\nmeasure, on account of the environmental conditions, the quantity declared on the\npackage shall correspond to the net quantity which will be received by the consumer, and\nthe declaration of quantity of the commodity as declared on the package, and the\ndeclaration of quantity on such package shall not be qualified by the words 'when packed'\nor the like.\n\n\n\n\n\n(3) Save as otherwise provided in sub-rule (4), where a commodity in package is likely to\nundergo variations in weight or measure on account of environmental conditions and\nsuch variation is negligible, the declaration of quantity in relation to such package shall\nbe made after taking into account such variation so that the consumer may receive not\nless than the net quantity of the commodity as declared on the package, and the\ndeclaration of quantity on such package shall not also be qualified by the words 'when\npacked' or the like.\n(4) The declaration of quantity in relation to commodities which are likely to undergo\nsignificant variations in weight or measures on account of environmental or other\nconditions may be qualified by the words “when packed”, as specified in the Third\nSchedule."
+}

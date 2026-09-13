@@ -1,0 +1,29 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R21",
+  "reference": "Rule 21",
+  "title": "Inspection of quantity and error in packages at the premises of the wholesale",
+  "purpose": "Machine-readable definition for rule-engine evaluation.",
+  "checks": [
+    {
+      "id": "R21_COMPLIANCE",
+      "reference": "Rule 21",
+      "requirement": "Evaluate the package or inspection data against the legal requirement preserved in source_text.",
+      "required": "CONDITIONAL"
+    }
+  ],
+  "input_fields": [
+    "product",
+    "package",
+    "declarations",
+    "analysis",
+    "inspection"
+  ],
+  "source_text": "21. Inspection of quantity and error in packages at the premises of the wholesale\ndealer or retail dealer\n(1) Ordinarily, any test in relation to the net quantity contained in a package shall not be\ncarried out at the premises of the retail dealer or the wholesale dealer, unless-\n(i) a complaint is received by the Director or the Controller or any Legal Metrology\nOfficer to the effect that the package sold or delivered to the complainant does not\ncontain the quantity declared on such package or on the label affixed thereto;\n(ii) the Director or the Controller or any Legal Metrology Officer has reason to suspect\nthat any package has been tampered with or that there has been any pilferage or leakage\nof the commodity contained in the packages\n(iii) the Director or the Controller or any Legal Metrology Officer and any package, or\nany label affixed thereto, does not bear thereon all or any of the declarations which are\nrequired to be made under these rules.\n(2) Where any test is carried out in pursuance of the provisions of sub-rule (1), the\nDirector, Controller or any Legal Metrology Officer shall verify whether the quantity\ncontained in the package corresponds to the quantity declared on such packages or any\nlabel affixed thereto and where quantity contained in package is less than the declared\n\n\n\n\nquantity, whether the deficiency is more than the maximum permissible error in relation\nto that commodity.\n(3) Where the Director, Controller or any Legal Metrology Officer finds on a test carried\nout under this rule that the error in deficiency in any package kept or stored for sale,\ndistribution or delivery at the premises of the retail or wholesale dealer is more than the\nmaximum permissible error in relation to that commodity, he shall seize such package\nand take appropriate action against the retail dealer or the wholesale dealer, as the case\nmay be, in accordance with the provisions of the Act:\nProvided that where the package bears the legend 'when packed', no punitive action shall\nbe taken against the retail dealer or wholesale dealer if the Director, Controller or any\nLegal Metrology Officer is satisfied after necessary test that the deficiency in the net\nquantity contained in package is due to environmental conditions.\n(4) Where as a result of any test made under this rule, it is found that the net quantity\ncontained in the package conforms to the declared quantity or where there is a deficiency,\nsuch deficiency is not more than the maximum permissible error, the retail dealer shall be\nat liberty to sell or deliver or distribute such commodity at the price determined on the\nbasis of the quantity found on such tests.\n(5)Where, as a result of any test made under this rule, it is found that any package, or any\nlabel affixed thereto, does not bear thereon all or any of the declarations required to be\nmade under these rules, it shall be lawful for the Director, Controller or any Legal\nMetrology Officer to make such enquiries as to the source from which such package was\nreceived by the whole sale dealer or the retail dealer as the case may be, as he may think\nfit."
+}

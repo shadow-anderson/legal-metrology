@@ -1,0 +1,60 @@
+[
+  {
+    "test_id": "TC-S1-001",
+    "schedule_id": "S1",
+    "name": "Maximum permissible error lookup",
+    "priority": "high",
+    "input": {
+      "declared_quantity": 500,
+      "unit": "g",
+      "measured_quantity": 484
+    },
+    "expected_result": {
+      "lookup_required": true,
+      "evaluate_against_first_schedule": true
+    }
+  },
+  {
+    "test_id": "TC-S2-001",
+    "schedule_id": "S2",
+    "name": "Standard package size validation",
+    "priority": "high",
+    "input": {
+      "commodity": "Biscuits",
+      "declared_pack_size": "75g"
+    },
+    "expected_result": {
+      "evaluate_against_second_schedule": true
+    }
+  },
+  {
+    "test_id": "TC-S5-S6-001",
+    "schedule_ids": [
+      "S5",
+      "S6"
+    ],
+    "name": "Sample selection and net quantity determination",
+    "priority": "critical",
+    "input": {
+      "lot_size": 1000,
+      "sample_packages": "engine_selects_as_per_fifth_schedule"
+    },
+    "expected_result": {
+      "sample_size_validated": true,
+      "net_quantity_method_validated": true
+    }
+  },
+  {
+    "test_id": "TC-S7-001",
+    "schedule_id": "S7",
+    "name": "Inspection result data-sheet generation",
+    "priority": "high",
+    "input": {
+      "inspection_completed": true,
+      "results_available": true
+    },
+    "expected_result": {
+      "seventh_schedule_form_generated": true
+    }
+  }
+]

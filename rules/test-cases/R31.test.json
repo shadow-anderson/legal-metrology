@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 31 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 31: (1) Any advertisement mentioning the retail sale price of the pre-packaged"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 31 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 31 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 31 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "status_values": [
+    "PASS",
+    "FAIL",
+    "VERIFY",
+    "NOT_APPLICABLE"
+  ],
+  "version": "1.0.0",
+  "rule_id": "R10",
+  "reference": "Rule 10",
+  "title": "Declaration of name and address of manufacturer, packer or importer",
+  "checks": [
+    {
+      "id": "R10_1",
+      "requirement": "Conspicuous name and complete address of manufacturer; if manufacturer is not packer, both manufacturer and packer; imported package requires importer",
+      "conditional": true
+    },
+    {
+      "id": "R10_SMALL_PACKAGE",
+      "condition": "package.capacity_cm3 <= 5",
+      "requirement": "Identifying mark or inscription enabling consumer to identify manufacturer/packer/importer is sufficient"
+    },
+    {
+      "id": "R10_IMPORTED_PACKED_INDIA",
+      "condition": "manufactured_outside_india_and_packed_in_india",
+      "requirement": "Principal display panel must contain name and complete address of packer or importer in India"
+    }
+  ],
+  "complete_address_definition": {
+    "factory_case": "Postal address at which factory is situated",
+    "other_case": "Street name, premises number if any, and either city and State or PIN Code sufficient to identify and locate the entity"
+  },
+  "name_requirement": "Actual corporate name, or if not incorporated, business name used in India",
+  "input_fields": [
+    "product.manufacturer",
+    "product.packer",
+    "product.importer",
+    "product.is_imported",
+    "product.manufactured_outside_india",
+    "product.packed_in_india",
+    "package.capacity_cm3",
+    "declarations[].on_principal_display_panel"
+  ]
+}

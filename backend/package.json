@@ -2,13 +2,15 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:rule-pack": "node src/ruleEngine/testRulePack.js",
+    "test:rule-engine": "node src/ruleEngine/testRuleEngine.js",
+    "test:applicability": "node src/ruleEngine/testApplicability.js",
+    "test:fail-cases": "node src/ruleEngine/testFailCases.js"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +20,12 @@
     "@supabase/supabase-js": "^2.115.0",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
+    "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "joi": "^18.2.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }

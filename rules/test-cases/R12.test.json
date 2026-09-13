@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Liquid shampoo declared by volume",
+    "input": {
+      "physical_form": "liquid",
+      "measurement_type": "VOLUME",
+      "commodity_name": "Shampoo"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Solid commodity declared by volume without schedule exception",
+    "input": {
+      "physical_form": "solid",
+      "measurement_type": "VOLUME",
+      "commodity_name": "Generic solid"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Curd schedule exception",
+    "input": {
+      "physical_form": "semi_solid",
+      "measurement_type": "WEIGHT",
+      "commodity_name": "Curd"
+    },
+    "expected": "PASS"
+  }
+]

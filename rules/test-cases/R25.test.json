@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Rule 25 compliant/valid scenario",
+    "input": {
+      "scenario": "Provide complete valid data required for Rule 25: Restrictions on sale of export packages in India.-"
+    },
+    "expected": "PASS"
+  },
+  {
+    "name": "Rule 25 missing or non-compliant data",
+    "input": {
+      "scenario": "Required condition under Rule 25 is missing or violated"
+    },
+    "expected": "FAIL"
+  },
+  {
+    "name": "Rule 25 insufficient evidence",
+    "input": {
+      "scenario": "OCR, measurement or inspection evidence is incomplete"
+    },
+    "expected": "VERIFY"
+  }
+]

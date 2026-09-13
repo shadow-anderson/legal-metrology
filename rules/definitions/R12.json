@@ -1,0 +1,39 @@
+{
+  "rule_id": "R12",
+  "rule_name": "Declaration of Net Quantity",
+  "description": "Validates the declaration of net quantity according to Rule 12.",
+
+  "checks": [
+    {
+      "check_id": "R12_1",
+      "type": "MEASUREMENT_TYPE",
+      "field": "measurement_type",
+      "requirement": "Net quantity must be declared according to the appropriate measurement type",
+      "on_missing": "REQUIRES_VERIFICATION"
+    },
+
+    {
+      "check_id": "R12_2",
+      "type": "ADDITIONAL_QUANTITY_REQUIREMENTS",
+      "field": "net_quantity",
+      "requirement": "Net quantity declaration must contain a valid positive value and unit",
+      "on_missing": "FAIL"
+    },
+
+    {
+      "check_id": "R12_3",
+      "type": "SMALL_PACKAGE_EXCEPTION",
+      "field": "package_capacity",
+      "requirement": "Small package exception applies only when capacity is 5 cubic centimetres or less",
+      "on_missing": "NOT_APPLICABLE"
+    },
+
+    {
+      "check_id": "R12_4",
+      "type": "SCHEDULE_LOOKUP",
+      "field": "commodity_name",
+      "requirement": "Commodity must comply with applicable Fourth Schedule requirements",
+      "on_missing": "REQUIRES_VERIFICATION"
+    }
+  ]
+}
