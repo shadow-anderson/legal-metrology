@@ -6,6 +6,29 @@ const requireAuth = require("../auth/auth.middleware");
 
 const router = express.Router();
 
+// =====================================================
+// Convert database snake_case keys to API camelCase
+// =====================================================
+
+function snakeToCamel(value) {
+  if (Array.isArray(value)) {
+    return value.map(snakeToCamel);
+  }
+
+  if (value !== null && typeof value === "object") {
+    return Object.keys(value).reduce((result, key) => {
+      const camelKey = key.replace(/_([a-z])/g, (_, letter) =>
+        letter.toUpperCase()
+      );
+
+      result[camelKey] = snakeToCamel(value[key]);
+
+      return result;
+    }, {});
+  }
+
+  return value;
+}
 
 // =====================================================
 // GET INSPECTION RESULTS
@@ -34,7 +57,7 @@ router.get(
         !authHeader.startsWith("Bearer ")
       ) {
         return res.status(401).json({
-          error: "Missing authorization token"
+          error: "Missing authorization token",
         });
       }
 
@@ -47,12 +70,11 @@ router.get(
         {
           global: {
             headers: {
-              Authorization: `Bearer ${token}`
-            }
-          }
+              Authorization: `Bearer ${token}`,
+            },
+          },
         }
       );
-
 
       // =====================================================
       // 2. Get inspection
@@ -60,7 +82,7 @@ router.get(
 
       const {
         data: inspection,
-        error: inspectionError
+        error: inspectionError,
       } = await userSupabase
         .from("inspections")
         .select(`
@@ -84,16 +106,15 @@ router.get(
         );
 
         return res.status(500).json({
-          error: "Inspection query failed"
+          error: "Inspection query failed",
         });
       }
 
       if (!inspection) {
         return res.status(404).json({
-          error: "Inspection not found"
+          error: "Inspection not found",
         });
       }
-
 
       // =====================================================
       // 3. Check internal officer
@@ -101,7 +122,7 @@ router.get(
 
       const {
         data: officer,
-        error: officerError
+        error: officerError,
       } = await userSupabase
         .from("users")
         .select("id, role")
@@ -115,16 +136,15 @@ router.get(
         );
 
         return res.status(500).json({
-          error: "Officer lookup failed"
+          error: "Officer lookup failed",
         });
       }
 
       if (!officer) {
         return res.status(403).json({
-          error: "User is not registered as an officer"
+          error: "User is not registered as an officer",
         });
       }
-
 
       // =====================================================
       // 4. Check inspection ownership
@@ -133,10 +153,9 @@ router.get(
       if (inspection.officer_id !== officer.id) {
         return res.status(403).json({
           error:
-            "You are not authorized to view this inspection"
+            "You are not authorized to view this inspection",
         });
       }
-
 
       // =====================================================
       // 5. Get product
@@ -147,40 +166,44 @@ router.get(
       if (inspection.product_id) {
         const {
           data: productData,
-          error: productError
+          error: productError,
         } = await userSupabase
           .from("products")
           .select(`
-      id,
-      name,
-      category,
-      commodity_code,
-      brand_name,
-      created_at,
-      updated_at
-    `)
+            id,
+            name,
+            category,
+            commodity_code,
+            brand_name,
+            created_at,
+            updated_at
+          `)
           .eq("id", inspection.product_id)
           .maybeSingle();
 
         if (productError) {
-          console.error("Product lookup error:", productError);
+          console.error(
+            "Product lookup error:",
+            productError
+          );
         }
 
         product = productData || null;
       }
+
       // =====================================================
       // 6. Get images
       // =====================================================
 
       const {
         data: images,
-        error: imagesError
+        error: imagesError,
       } = await userSupabase
         .from("product_images")
         .select("*")
         .eq("inspection_id", inspectionId)
         .order("uploaded_at", {
-          ascending: true
+          ascending: true,
         });
 
       if (imagesError) {
@@ -190,10 +213,9 @@ router.get(
         );
 
         return res.status(500).json({
-          error: "Images lookup failed"
+          error: "Images lookup failed",
         });
       }
-
 
       // =====================================================
       // 7. Get extracted AI fields
@@ -201,13 +223,13 @@ router.get(
 
       const {
         data: extractedFields,
-        error: fieldsError
+        error: fieldsError,
       } = await userSupabase
         .from("extracted_fields")
         .select("*")
         .eq("inspection_id", inspectionId)
         .order("created_at", {
-          ascending: true
+          ascending: true,
         });
 
       if (fieldsError) {
@@ -217,10 +239,9 @@ router.get(
         );
 
         return res.status(500).json({
-          error: "AI findings lookup failed"
+          error: "AI findings lookup failed",
         });
       }
-
 
       // =====================================================
       // 8. Get applicability result
@@ -228,7 +249,7 @@ router.get(
 
       const {
         data: applicability,
-        error: applicabilityError
+        error: applicabilityError,
       } = await userSupabase
         .from("applicability_results")
         .select("*")
@@ -242,10 +263,9 @@ router.get(
         );
 
         return res.status(500).json({
-          error: "Applicability lookup failed"
+          error: "Applicability lookup failed",
         });
       }
-
 
       // =====================================================
       // 9. Get rule results
@@ -253,13 +273,13 @@ router.get(
 
       const {
         data: ruleResults,
-        error: ruleResultsError
+        error: ruleResultsError,
       } = await userSupabase
         .from("rule_results")
         .select("*")
         .eq("inspection_id", inspectionId)
         .order("created_at", {
-          ascending: true
+          ascending: true,
         });
 
       if (ruleResultsError) {
@@ -269,10 +289,9 @@ router.get(
         );
 
         return res.status(500).json({
-          error: "Rule results lookup failed"
+          error: "Rule results lookup failed",
         });
       }
-
 
       // =====================================================
       // 10. Get evidence
@@ -280,13 +299,13 @@ router.get(
 
       const {
         data: evidence,
-        error: evidenceError
+        error: evidenceError,
       } = await userSupabase
         .from("evidence")
         .select("*")
         .eq("inspection_id", inspectionId)
         .order("created_at", {
-          ascending: true
+          ascending: true,
         });
 
       if (evidenceError) {
@@ -296,10 +315,9 @@ router.get(
         );
 
         return res.status(500).json({
-          error: "Evidence lookup failed"
+          error: "Evidence lookup failed",
         });
       }
-
 
       // =====================================================
       // 11. Get measurements
@@ -307,13 +325,13 @@ router.get(
 
       const {
         data: measurements,
-        error: measurementsError
+        error: measurementsError,
       } = await userSupabase
         .from("measurements")
         .select("*")
         .eq("inspection_id", inspectionId)
         .order("created_at", {
-          ascending: true
+          ascending: true,
         });
 
       if (measurementsError) {
@@ -323,10 +341,9 @@ router.get(
         );
 
         return res.status(500).json({
-          error: "Measurements lookup failed"
+          error: "Measurements lookup failed",
         });
       }
-
 
       // =====================================================
       // 12. Return complete inspection results
@@ -336,7 +353,6 @@ router.get(
         inspection: {
           id: inspection.id,
 
-          // Can be null during early processing stage
           productId: inspection.product_id || null,
 
           officerId: inspection.officer_id,
@@ -356,27 +372,28 @@ router.get(
             inspection.created_at,
 
           updatedAt:
-            inspection.updated_at
+            inspection.updated_at,
         },
 
-        product: product,
+        // Convert DB snake_case → API camelCase
+        product: snakeToCamel(product),
 
-        images: images || [],
+        images: snakeToCamel(images || []),
 
         aiFindings:
-          extractedFields || [],
+          snakeToCamel(extractedFields || []),
 
         applicability:
-          applicability || null,
+          snakeToCamel(applicability || null),
 
         ruleResults:
-          ruleResults || [],
+          snakeToCamel(ruleResults || []),
 
         evidence:
-          evidence || [],
+          snakeToCamel(evidence || []),
 
         measurements:
-          measurements || []
+          snakeToCamel(measurements || []),
       });
 
     } catch (error) {
@@ -386,11 +403,10 @@ router.get(
       );
 
       return res.status(500).json({
-        error: "Internal server error"
+        error: "Internal server error",
       });
     }
   }
 );
 
-
-module.exports = router;                                                                                                                                                                                                                                                                                          
+module.exports = router;
