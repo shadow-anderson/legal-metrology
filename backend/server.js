@@ -1,4 +1,5 @@
 const supabase = require("./src/db/supabase");
+const {PORT} = require("./src/db/config");
 const express = require("express");
 const cors = require("cors");
 const inspectionRoutes = require("./src/api/inspection.routes");
@@ -41,8 +42,6 @@ app.post("/api/compliance/check", (req, res) => {
     });
   }
 });
-
-const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
