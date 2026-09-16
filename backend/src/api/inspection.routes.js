@@ -3,6 +3,8 @@ const crypto = require("crypto");
 
 const supabase = require("../db/supabase");
 const requireAuth = require("../auth/auth.middleware");
+const { runComplianceCheck } = require("../ruleEngine/runComplianceCheck");
+const { resolveProduct } = require("../products/productResolver");
 
 const router = express.Router();
 
@@ -435,67 +437,286 @@ router.post("/inspections/:id/process", requireAuth, async (req, res) => {
       })),
     };
 
-    // 9. Create AI processing job
-    const { data: job, error: jobError } = await supabase
-      .from("ai_jobs")
-      .insert({
-        inspection_id: inspectionId,
-        status: "PENDING",
-        payload: jobPayload,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      })
-      .select()
-      .single();
+    // TEMPORARY MOCK AI OUTPUT
+    const mockAiOutput = {
+      product: {
+        name: {
+          value: "Dove Shampoo",
+          confidence: 0.98,
+        },
+        category: {
+          value: "Shampoo",
+          confidence: 0.95,
+        },
+        netQuantity: {
+          value: 180,
+          unit: "ml",
+          confidence: 0.98,
+        },
+        mrp: {
+          value: 220,
+          currency: "INR",
+          confidence: 0.99,
+        },
+        manufacturer: {
+          value: "Hindustan Unilever Limited",
+          confidence: 0.96,
+        },
+        packer: {
+          value: null,
+          confidence: null,
+        },
+        importer: {
+          value: null,
+          confidence: null,
+        },
+        manufactureDate: {
+          value: "2026-08",
+          confidence: 0.88,
+        },
+        consumerCare: {
+          phone: {
+            value: "1800-123-7890",
+            confidence: 0.91,
+          },
+          email: {
+            value: "care@example.com",
+            confidence: 0.91,
+          },
+        },
+        countryOfOrigin: {
+          value: null,
+          confidence: null,
+        },
+      },
 
-    if (jobError) {
-      console.error("AI job creation error:", jobError);
+      regions: [
+        {
+          field: "PRODUCT_NAME",
+          bbox: [100, 100, 300, 150],
+          ocrText: "Dove Shampoo",
+          confidence: 0.98,
+          sourceImageId: images[0].id,
+        },
+        {
+          field: "NET_QTY",
+          bbox: [100, 200, 250, 240],
+          ocrText: "180 ml",
+          confidence: 0.98,
+          sourceImageId: images[0].id,
+        },
+        {
+          field: "MRP",
+          bbox: [100, 300, 250, 340],
+          ocrText: "MRP ₹220",
+          confidence: 0.99,
+          sourceImageId: images[0].id,
+        },
+        {
+          field: "MANUFACTURER",
+          bbox: [100, 400, 350, 450],
+          ocrText: "Hindustan Unilever Limited",
+          confidence: 0.96,
+          sourceImageId: images[0].id,
+        },
+        {
+          field: "ADDRESS",
+          bbox: [100, 500, 400, 560],
+          ocrText: "Hindustan Unilever Limited",
+          confidence: 0.9,
+          sourceImageId: images[0].id,
+        },
+        {
+          field: "DATE",
+          bbox: [100, 600, 250, 640],
+          ocrText: "2026-08",
+          confidence: 0.88,
+          sourceImageId: images[0].id,
+        },
+        {
+          field: "CONSUMER_CARE",
+          bbox: [100, 700, 400, 760],
+          ocrText: "1800-123-7890 care@example.com",
+          confidence: 0.91,
+          sourceImageId: images[0].id,
+        },
+      ],
+
+      imageQuality: [
+        {
+          imageId: images[0].id,
+          blurScore: 0.95,
+          glareFraction: 0.02,
+          skewDegrees: 0.5,
+          accepted: true,
+        },
+      ],
+
+      scale: {
+        established: true,
+        pixelsPerMm: 10.8,
+        method: "REFERENCE_MARKER",
+      },
+    };
+
+    // Resolve product from AI output
+    let productResolution;
+
+    try {
+      productResolution = await resolveProduct(mockAiOutput);
+
+      console.log("PRODUCT RESOLVED:", productResolution);
+    } catch (productError) {
+      console.error("Product resolution error:", productError);
 
       return res.status(500).json({
-        error: "Failed to create AI processing job",
+        error: "Product resolution failed",
+        details: productError.message,
       });
     }
 
-    // 10. Move inspection to PROCESSING
-    const { error: statusError } = await supabase
+    // Link resolved product to inspection
+    const { error: productUpdateError } = await supabase
       .from("inspections")
       .update({
-        status: "PROCESSING",
+        product_id: productResolution.productId,
         updated_at: new Date().toISOString(),
       })
       .eq("id", inspectionId);
 
-    if (statusError) {
-      console.error("Inspection status update error:", statusError);
-
-      // Mark job failed because inspection state
-      // could not be updated.
-      await supabase
-        .from("ai_jobs")
-        .update({
-          status: "FAILED",
-          updated_at: new Date().toISOString(),
-        })
-        .eq("id", job.id);
+    if (productUpdateError) {
+      console.error("Inspection product update error:", productUpdateError);
 
       return res.status(500).json({
-        error: "Failed to start inspection processing",
+        error: "Failed to link product to inspection",
+        details: productUpdateError.message,
       });
     }
 
-    // 11. Return queued job
-    return res.status(202).json({
-      message: "Inspection processing job queued",
+    // 9. Run Rule Engine using mock AI output
+    let complianceResult;
+
+    try {
+      complianceResult = runComplianceCheck({
+        inspectionId,
+        aiOutput: mockAiOutput,
+      });
+    } catch (ruleEngineError) {
+      console.error("Rule Engine error:", ruleEngineError);
+
+      return res.status(500).json({
+        error: "Rule Engine processing failed",
+        details: ruleEngineError.message,
+      });
+    }
+
+    // 10. Save applicability result
+    const applicability = complianceResult.applicability;
+
+    if (applicability) {
+      const { error: applicabilityError } = await supabase
+        .from("applicability_results")
+        .update({
+          status: applicability.status,
+          context_snapshot: applicability.contextSnapshot,
+          applicable_rules: applicability.applicableRules,
+          applicable_schedules: applicability.applicableSchedules,
+          exemptions: applicability.exemptions,
+          reasons: applicability.reasons,
+          confirmed_by_officer_id: applicability.confirmedByOfficerId,
+          confirmed_at: applicability.confirmedAt,
+          evaluated_at: applicability.evaluatedAt,
+        })
+        .eq("inspection_id", inspectionId);
+
+      if (applicabilityError) {
+        console.error("Applicability result save error:", applicabilityError);
+
+        return res.status(500).json({
+          error: "Failed to save applicability result",
+          details: applicabilityError.message,
+          code: applicabilityError.code,
+          hint: applicabilityError.hint,
+          detailsRaw: applicabilityError.details,
+        });
+      }
+    }
+
+    // 11. Save rule results
+    const ruleResults = complianceResult.ruleResults || [];
+
+    if (ruleResults.length > 0) {
+      const ruleResultRows = ruleResults.map((result) => ({
+        id: result.id,
+        inspection_id: inspectionId,
+        rule_id: result.ruleId,
+        rule_version: result.ruleVersion,
+        check_id: result.checkId,
+        status: result.status,
+        message: result.message,
+        observed_value: result.observedValue ?? null,
+        required_value: result.requiredValue ?? null,
+        confidence: result.confidence,
+        result_source: result.resultSource,
+        verification_action: result.verificationAction ?? null,
+        verified_by_officer_id: result.verifiedByOfficerId ?? null,
+        verified_at: result.verifiedAt ?? null,
+        created_at: result.createdAt,
+      }));
+
+      const { error: ruleResultsError } = await supabase
+        .from("rule_results")
+        .upsert(ruleResultRows, {
+          onConflict: "inspection_id,rule_id,check_id",
+        });
+
+      if (ruleResultsError) {
+        console.error("Rule results save error:", ruleResultsError);
+
+        return res.status(500).json({
+          error: "Failed to save rule results",
+        });
+      }
+    }
+
+    // 12. Update inspection with compliance result
+    const overallStatus =
+      complianceResult.complianceSummary?.overallStatus ||
+      complianceResult.status ||
+      "REQUIRES_VERIFICATION";
+
+    const { error: inspectionUpdateError } = await supabase
+      .from("inspections")
+      .update({
+        overall_result: overallStatus,
+        status: "AI_EXTRACTED",
+        context_json:
+          complianceResult.normalizedInspection ||
+          inspection.context_json ||
+          {},
+        updated_at: new Date().toISOString(),
+      })
+      .eq("id", inspectionId);
+
+    if (inspectionUpdateError) {
+      console.error("Inspection result update error:", inspectionUpdateError);
+
+      return res.status(500).json({
+        error: "Failed to update inspection result",
+      });
+    }
+
+    // 13. Return completed AI extraction result
+    return res.status(200).json({
+      message: "Inspection processed successfully",
       inspection: {
-        id: inspection.id,
-        status: "PROCESSING",
-        overallResult: inspection.overall_result ?? null,
+        id: inspectionId,
+        status: "AI_EXTRACTED",
+        overallResult: overallStatus,
       },
-      job: {
-        id: job.id,
-        status: job.status,
-      },
-      status: "PROCESSING",
+      applicability: complianceResult.applicability ?? null,
+      ruleResults: complianceResult.ruleResults ?? [],
+      complianceSummary: complianceResult.complianceSummary ?? null,
     });
   } catch (error) {
     console.error("Process API error:", error);
@@ -575,7 +796,8 @@ router.post("/inspections/:id/verify", requireAuth, async (req, res) => {
     // 6. Find AI finding
     const { data: finding, error: findingError } = await supabase
       .from("extracted_fields")
-      .select(`
+      .select(
+        `
         id,
         inspection_id,
         field_name,
@@ -584,7 +806,8 @@ router.post("/inspections/:id/verify", requireAuth, async (req, res) => {
         officer_value,
         officer_id,
         verification_status
-      `)
+      `,
+      )
       .eq("id", findingId)
       .eq("inspection_id", inspectionId)
       .single();
@@ -616,7 +839,8 @@ router.post("/inspections/:id/verify", requireAuth, async (req, res) => {
       .update(updateData)
       .eq("id", findingId)
       .eq("inspection_id", inspectionId)
-      .select(`
+      .select(
+        `
         id,
         inspection_id,
         field_name,
@@ -626,7 +850,8 @@ router.post("/inspections/:id/verify", requireAuth, async (req, res) => {
         officer_id,
         corrected_at,
         verification_status
-      `)
+      `,
+      )
       .single();
 
     if (updateError) {

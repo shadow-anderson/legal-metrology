@@ -1,0 +1,120 @@
+{
+  "inspectionId": "f5c601c2-3d11-4ddd-9ad6-83930e125f9c",
+  "structuredOutput": {
+    "product": {
+      "name": {
+        "value": "Dove Shampoo",
+        "confidence": 0.98
+      },
+      "category": {
+        "value": "Shampoo",
+        "confidence": 0.95
+      },
+      "netQuantity": {
+        "value": 180,
+        "unit": "ml",
+        "confidence": 0.98
+      },
+      "mrp": {
+        "value": 220,
+        "currency": "INR",
+        "confidence": 0.99
+      },
+      "manufacturer": {
+        "value": "Hindustan Unilever Limited",
+        "confidence": 0.96
+      },
+      "packer": {
+        "value": null,
+        "confidence": null
+      },
+      "importer": {
+        "value": null,
+        "confidence": null
+      },
+      "manufactureDate": {
+        "value": "2026-08",
+        "confidence": 0.88
+      },
+      "consumerCare": {
+        "phone": {
+          "value": "1800-123-7890",
+          "confidence": 0.91
+        },
+        "email": {
+          "value": "care@example.com",
+          "confidence": 0.91
+        }
+      },
+      "countryOfOrigin": {
+        "value": null,
+        "confidence": null
+      }
+    },
+    "regions": [
+      {
+        "field": "PRODUCT_NAME",
+        "bbox": [100, 100, 300, 150],
+        "ocrText": "Dove Shampoo",
+        "confidence": 0.98,
+        "sourceImageId": "743d4923-4b80-46f9-a5bc-5d902f2d537f"
+      },
+      {
+        "field": "NET_QTY",
+        "bbox": [100, 200, 250, 240],
+        "ocrText": "180 ml",
+        "confidence": 0.98,
+        "sourceImageId": "743d4923-4b80-46f9-a5bc-5d902f2d537f"
+      },
+      {
+        "field": "MRP",
+        "bbox": [100, 300, 250, 340],
+        "ocrText": "MRP ₹220",
+        "confidence": 0.99,
+        "sourceImageId": "743d4923-4b80-46f9-a5bc-5d902f2d537f"
+      },
+      {
+        "field": "MANUFACTURER",
+        "bbox": [100, 400, 350, 450],
+        "ocrText": "Hindustan Unilever Limited",
+        "confidence": 0.96,
+        "sourceImageId": "743d4923-4b80-46f9-a5bc-5d902f2d537f"
+      },
+      {
+        "field": "ADDRESS",
+        "bbox": [100, 500, 400, 560],
+        "ocrText": "Hindustan Unilever Limited",
+        "confidence": 0.9,
+        "sourceImageId": "743d4923-4b80-46f9-a5bc-5d902f2d537f"
+      },
+      {
+        "field": "DATE",
+        "bbox": [100, 600, 250, 640],
+        "ocrText": "2026-08",
+        "confidence": 0.88,
+        "sourceImageId": "743d4923-4b80-46f9-a5bc-5d902f2d537f"
+      },
+      {
+        "field": "CONSUMER_CARE",
+        "bbox": [100, 700, 400, 760],
+        "ocrText": "1800-123-7890 care@example.com",
+        "confidence": 0.91,
+        "sourceImageId": "743d4923-4b80-46f9-a5bc-5d902f2d537f"
+      }
+    ],
+    "imageQuality": [
+      {
+        "imageId": "743d4923-4b80-46f9-a5bc-5d902f2d537f",
+        "blurScore": 0.95,
+        "glareFraction": 0.02,
+        "skewDegrees": 0.5,
+        "accepted": true
+      }
+    ],
+    "scale": {
+      "established": true,
+      "pixelsPerMm": 10.8,
+      "method": "REFERENCE_MARKER"
+    }
+  }
+}
