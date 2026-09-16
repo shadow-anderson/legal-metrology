@@ -709,14 +709,8 @@ router.post("/inspections/:id/process", requireAuth, async (req, res) => {
     // 13. Return completed AI extraction result
     return res.status(200).json({
       message: "Inspection processed successfully",
-      inspection: {
-        id: inspectionId,
-        status: "AI_EXTRACTED",
-        overallResult: overallStatus,
-      },
-      applicability: complianceResult.applicability ?? null,
-      ruleResults: complianceResult.ruleResults ?? [],
-      complianceSummary: complianceResult.complianceSummary ?? null,
+      inspectionId,
+      status: "AI_EXTRACTED",
     });
   } catch (error) {
     console.error("Process API error:", error);
