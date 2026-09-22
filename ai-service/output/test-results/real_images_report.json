@@ -1,0 +1,428 @@
+[
+  {
+    "image": "WhatsApp Image 2026-09-20 at 17.27.03.jpeg",
+    "image_id": "8396ad02-4515-4985-9271-8c897d52eb22",
+    "status": "OK",
+    "elapsed_sec": 1.501,
+    "schema_valid": true,
+    "schema_errors": [],
+    "result": {
+      "product": {
+        "name": {
+          "value": "TakaTak",
+          "confidence": 0.9710020678383964
+        },
+        "category": {
+          "value": "",
+          "confidence": 0.0
+        },
+        "netQuantity": {
+          "value": null,
+          "unit": null,
+          "confidence": null
+        },
+        "mrp": {
+          "value": null,
+          "currency": null,
+          "confidence": null
+        },
+        "manufacturer": {
+          "value": null,
+          "confidence": null
+        },
+        "packer": {
+          "value": null,
+          "confidence": null
+        },
+        "importer": {
+          "value": null,
+          "confidence": null
+        },
+        "manufactureDate": {
+          "value": null,
+          "confidence": null
+        },
+        "consumerCare": {
+          "phone": {
+            "value": null,
+            "confidence": null
+          },
+          "email": {
+            "value": null,
+            "confidence": null
+          }
+        },
+        "countryOfOrigin": {
+          "value": null,
+          "confidence": null
+        }
+      },
+      "regions": [],
+      "imageQuality": [
+        {
+          "imageId": "8396ad02-4515-4985-9271-8c897d52eb22",
+          "blurScore": 1.0,
+          "glareFraction": 0.0062,
+          "skewDegrees": 0.0,
+          "accepted": true
+        }
+      ],
+      "scale": {
+        "established": false,
+        "pixelsPerMm": null,
+        "method": "NONE"
+      }
+    }
+  },
+  {
+    "image": "WhatsApp Image 2026-09-20 at 17.27.04.jpeg",
+    "image_id": "0ddcc1c3-5390-45da-9930-91c9777181da",
+    "status": "OK",
+    "elapsed_sec": 4.536,
+    "schema_valid": true,
+    "schema_errors": [],
+    "result": {
+      "product": {
+        "name": {
+          "value": "HALDIRAMSNACKSFOODPRIVATEL",
+          "confidence": 0.9156520572992471
+        },
+        "category": {
+          "value": "",
+          "confidence": 0.0
+        },
+        "netQuantity": {
+          "value": 7.0,
+          "unit": "g",
+          "confidence": 0.996145486831665
+        },
+        "mrp": {
+          "value": null,
+          "currency": null,
+          "confidence": null
+        },
+        "manufacturer": {
+          "value": null,
+          "confidence": null
+        },
+        "packer": {
+          "value": null,
+          "confidence": null
+        },
+        "importer": {
+          "value": null,
+          "confidence": null
+        },
+        "manufactureDate": {
+          "value": null,
+          "confidence": null
+        },
+        "consumerCare": {
+          "phone": {
+            "value": null,
+            "confidence": null
+          },
+          "email": {
+            "value": null,
+            "confidence": null
+          }
+        },
+        "countryOfOrigin": {
+          "value": null,
+          "confidence": null
+        }
+      },
+      "regions": [
+        {
+          "field": "NET_QTY",
+          "bbox": [
+            217.0,
+            570.0,
+            251.0,
+            591.0
+          ],
+          "ocrText": "7.0g",
+          "confidence": 0.9961,
+          "sourceImageId": "0ddcc1c3-5390-45da-9930-91c9777181da"
+        }
+      ],
+      "imageQuality": [
+        {
+          "imageId": "0ddcc1c3-5390-45da-9930-91c9777181da",
+          "blurScore": 1.0,
+          "glareFraction": 0.0008,
+          "skewDegrees": 0.0,
+          "accepted": true
+        }
+      ],
+      "scale": {
+        "established": false,
+        "pixelsPerMm": null,
+        "method": "NONE"
+      }
+    }
+  },
+  {
+    "image": "WhatsApp Image 2026-09-20 at 17.27.05 (1).jpeg",
+    "image_id": "4b20c395-f3c1-4f7d-b5cc-2d7fa865ec4d",
+    "status": "OK",
+    "elapsed_sec": 1.588,
+    "schema_valid": true,
+    "schema_errors": [],
+    "result": {
+      "product": {
+        "name": {
+          "value": "TakaTak",
+          "confidence": 0.9858770285333905
+        },
+        "category": {
+          "value": "",
+          "confidence": 0.0
+        },
+        "netQuantity": {
+          "value": 7.0,
+          "unit": "g",
+          "confidence": 0.9972437173128128
+        },
+        "mrp": {
+          "value": null,
+          "currency": null,
+          "confidence": null
+        },
+        "manufacturer": {
+          "value": null,
+          "confidence": null
+        },
+        "packer": {
+          "value": null,
+          "confidence": null
+        },
+        "importer": {
+          "value": null,
+          "confidence": null
+        },
+        "manufactureDate": {
+          "value": null,
+          "confidence": null
+        },
+        "consumerCare": {
+          "phone": {
+            "value": null,
+            "confidence": null
+          },
+          "email": {
+            "value": null,
+            "confidence": null
+          }
+        },
+        "countryOfOrigin": {
+          "value": null,
+          "confidence": null
+        }
+      },
+      "regions": [
+        {
+          "field": "NET_QTY",
+          "bbox": [
+            334.0,
+            619.0,
+            376.0,
+            644.0
+          ],
+          "ocrText": "7.0g",
+          "confidence": 0.9972,
+          "sourceImageId": "4b20c395-f3c1-4f7d-b5cc-2d7fa865ec4d"
+        }
+      ],
+      "imageQuality": [
+        {
+          "imageId": "4b20c395-f3c1-4f7d-b5cc-2d7fa865ec4d",
+          "blurScore": 1.0,
+          "glareFraction": 0.0004,
+          "skewDegrees": 0.0,
+          "accepted": true
+        }
+      ],
+      "scale": {
+        "established": false,
+        "pixelsPerMm": null,
+        "method": "NONE"
+      }
+    }
+  },
+  {
+    "image": "WhatsApp Image 2026-09-20 at 17.27.05.jpeg",
+    "image_id": "e21f5562-feda-436f-b787-d787ecc3e17c",
+    "status": "OK",
+    "elapsed_sec": 0.501,
+    "schema_valid": true,
+    "schema_errors": [],
+    "result": {
+      "product": {
+        "name": {
+          "value": "TakaTak",
+          "confidence": 0.9616114922932216
+        },
+        "category": {
+          "value": "",
+          "confidence": 0.0
+        },
+        "netQuantity": {
+          "value": null,
+          "unit": null,
+          "confidence": null
+        },
+        "mrp": {
+          "value": null,
+          "currency": null,
+          "confidence": null
+        },
+        "manufacturer": {
+          "value": null,
+          "confidence": null
+        },
+        "packer": {
+          "value": null,
+          "confidence": null
+        },
+        "importer": {
+          "value": null,
+          "confidence": null
+        },
+        "manufactureDate": {
+          "value": null,
+          "confidence": null
+        },
+        "consumerCare": {
+          "phone": {
+            "value": null,
+            "confidence": null
+          },
+          "email": {
+            "value": null,
+            "confidence": null
+          }
+        },
+        "countryOfOrigin": {
+          "value": null,
+          "confidence": null
+        }
+      },
+      "regions": [],
+      "imageQuality": [
+        {
+          "imageId": "e21f5562-feda-436f-b787-d787ecc3e17c",
+          "blurScore": 1.0,
+          "glareFraction": 0.003,
+          "skewDegrees": 0.0,
+          "accepted": true
+        }
+      ],
+      "scale": {
+        "established": false,
+        "pixelsPerMm": null,
+        "method": "NONE"
+      }
+    }
+  },
+  {
+    "image": "WhatsApp Image 2026-09-20 at 17.27.06.jpeg",
+    "image_id": "64786eb1-35cc-41cc-9145-89b4edf49895",
+    "status": "OK",
+    "elapsed_sec": 4.343,
+    "schema_valid": true,
+    "schema_errors": [],
+    "result": {
+      "product": {
+        "name": {
+          "value": "WATRATA",
+          "confidence": 0.7098764032125473
+        },
+        "category": {
+          "value": "",
+          "confidence": 0.0
+        },
+        "netQuantity": {
+          "value": 7.0,
+          "unit": "g",
+          "confidence": 0.9471069127321243
+        },
+        "mrp": {
+          "value": 20.0,
+          "currency": "INR",
+          "confidence": 0.8637291193008423
+        },
+        "manufacturer": {
+          "value": null,
+          "confidence": null
+        },
+        "packer": {
+          "value": null,
+          "confidence": null
+        },
+        "importer": {
+          "value": null,
+          "confidence": null
+        },
+        "manufactureDate": {
+          "value": null,
+          "confidence": null
+        },
+        "consumerCare": {
+          "phone": {
+            "value": null,
+            "confidence": null
+          },
+          "email": {
+            "value": null,
+            "confidence": null
+          }
+        },
+        "countryOfOrigin": {
+          "value": null,
+          "confidence": null
+        }
+      },
+      "regions": [
+        {
+          "field": "MRP",
+          "bbox": [
+            162.0,
+            517.0,
+            174.0,
+            532.0
+          ],
+          "ocrText": "0",
+          "confidence": 0.8637,
+          "sourceImageId": "64786eb1-35cc-41cc-9145-89b4edf49895"
+        },
+        {
+          "field": "NET_QTY",
+          "bbox": [
+            86.0,
+            475.0,
+            116.0,
+            498.0
+          ],
+          "ocrText": "7.0g",
+          "confidence": 0.9471,
+          "sourceImageId": "64786eb1-35cc-41cc-9145-89b4edf49895"
+        }
+      ],
+      "imageQuality": [
+        {
+          "imageId": "64786eb1-35cc-41cc-9145-89b4edf49895",
+          "blurScore": 1.0,
+          "glareFraction": 0.0012,
+          "skewDegrees": 0.0,
+          "accepted": true
+        }
+      ],
+      "scale": {
+        "established": false,
+        "pixelsPerMm": null,
+        "method": "NONE"
+      }
+    }
+  }
+]
