@@ -33,7 +33,13 @@ except ImportError:  # Optional fallback; deployments can choose their OCR engin
 
 from jsonschema import Draft202012Validator
 
-SERVICE_VERSION = "1.0.0"
+# Import new modules
+from src.image_recovery import estimate_blur_severity, analyze_blur_type, analyze_regions
+from src.image_recovery import generate_global_variants, generate_regional_variants
+from src.ocr.fusion import fuse_ocr_results, OCRPass, contextual_correction
+from src.extraction.ai_assisted import verify_with_ai, extract_regulatory_fields
+
+SERVICE_VERSION = "1.1.0"
 SERVICE_ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_PATH = SERVICE_ROOT / "schema" / "ai-output.schema.json"
 OUTPUT_DIR = SERVICE_ROOT / "output"
@@ -61,7 +67,7 @@ def _nullable(value: str | None, confidence: float | None) -> dict[str, Any]:
 
 def _quality(image: np.ndarray, image_id: str) -> dict[str, Any]:
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    blur_score = float(max(0.0, min(1.0, cv2.Laplacian(gray, cv2.CV_64F).var() / 500.0)))
+    blur_score = estimate_blur_severity(image)
     glare_fraction = float(np.mean((gray >= 245).astype(np.float32)))
     accepted = bool(image.shape[0] >= 32 and image.shape[1] >= 32)
     return {
@@ -95,11 +101,17 @@ def _rapidocr() -> Any | None:
     return _rapidocr_engine
 
 
-def _ocr(image: Image.Image, psm: int = 11, coordinate_scale: float = 1.0) -> list[Observation]:
+def _ocr(image: Image.Image | np.ndarray, psm: int = 11, coordinate_scale: float = 1.0) -> list[Observation]:
     observations: list[Observation] = []
+    
+    if isinstance(image, np.ndarray):
+        pil_img = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    else:
+        pil_img = image
+
     if pytesseract is not None and Output is not None:
         try:
-            data = pytesseract.image_to_data(image, output_type=Output.DICT, config=f"--psm {psm}")
+            data = pytesseract.image_to_data(pil_img, output_type=Output.DICT, config=f"--psm {psm}")
             for index, raw_text in enumerate(data.get("text", [])):
                 text = str(raw_text).strip()
                 try:
@@ -119,6 +131,7 @@ def _ocr(image: Image.Image, psm: int = 11, coordinate_scale: float = 1.0) -> li
                 ))
         except Exception:
             observations = []
+            
     if observations:
         return observations
 
@@ -126,7 +139,8 @@ def _ocr(image: Image.Image, psm: int = 11, coordinate_scale: float = 1.0) -> li
     if engine is None:
         return observations
     try:
-        result = engine(image)
+        np_img = np.asarray(pil_img)
+        result = engine(np_img)
         result = result[0] if isinstance(result, tuple) else result
     except Exception:
         return observations
@@ -149,34 +163,45 @@ def _ocr(image: Image.Image, psm: int = 11, coordinate_scale: float = 1.0) -> li
     return observations
 
 
-def _variant_images(image: Image.Image) -> list[Image.Image]:
-    """Create a small set of OCR variants without changing the source image."""
-    source = np.asarray(image)
-    if max(source.shape[:2]) < 1400:
-        scale = min(2.0, 1400 / max(source.shape[:2]))
-        upscaled = cv2.resize(source, None, fx=scale, fy=scale, interpolation=cv2.INTER_CUBIC)
-    else:
-        upscaled = source
-    gray = cv2.cvtColor(upscaled, cv2.COLOR_RGB2GRAY)
-    contrast = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8)).apply(gray)
-    sharpened = cv2.addWeighted(contrast, 1.35, cv2.GaussianBlur(contrast, (0, 0), 1.0), -0.35, 0)
-    return [
-        image,
-        Image.fromarray(upscaled),
-        Image.fromarray(sharpened),
-    ]
-
-
 def _ocr_adaptive(image: Image.Image) -> list[Observation]:
-    """Escalate from the original image to enhanced variants only when needed."""
+    """Escalate from the original image to enhanced variants using the new recovery pipeline."""
+    bgr = cv2.cvtColor(np.asarray(image), cv2.COLOR_RGB2BGR)
+    blur_score = estimate_blur_severity(bgr)
+    blur_level, blur_nature = analyze_blur_type(bgr)
+
     observations = _ocr(image)
-    if observations and sum(item.confidence for item in observations) / len(observations) >= 0.45:
+    avg_conf = sum(item.confidence for item in observations) / len(observations) if observations else 0.0
+    if observations and blur_level in ['NONE', 'LIGHT'] and avg_conf >= 0.5:
         return observations
+
+    global_variants = generate_global_variants(bgr, blur_level, blur_nature)
     candidates: list[Observation] = []
-    for variant in _variant_images(image)[1:]:
-        scale = variant.width / image.width if image.width else 1.0
-        candidates.extend(_ocr(variant, coordinate_scale=scale))
+    
+    for var in global_variants[1:]:
+        var_pil = Image.fromarray(cv2.cvtColor(var, cv2.COLOR_BGR2RGB) if len(var.shape) == 3 else var)
+        scale = var_pil.width / image.width if image.width else 1.0
+        candidates.extend(_ocr(var_pil, coordinate_scale=scale))
+
+    h, w = bgr.shape[:2]
+    mock_regions = [{"bbox": [0, 0, w, h]}]
+    
+    regional_blur_analysis = analyze_regions(bgr, mock_regions)
+    for reg in regional_blur_analysis:
+        reg_variants = generate_regional_variants(bgr, reg["bbox"])
+        for r_var in reg_variants:
+            r_pil = Image.fromarray(cv2.cvtColor(r_var, cv2.COLOR_BGR2RGB) if len(r_var.shape) == 3 else r_var)
+            x1, y1, x2, y2 = reg["bbox"]
+            scale = r_pil.width / (x2 - x1) if (x2 - x1) > 0 else 1.0
+            crop_obs = _ocr(r_pil, coordinate_scale=scale)
+            for co in crop_obs:
+                co.bbox[0] += x1
+                co.bbox[1] += y1
+                co.bbox[2] += x1
+                co.bbox[3] += y1
+                candidates.append(co)
+
     combined = observations + candidates
+    
     unique: list[Observation] = []
     for item in combined:
         normalized = re.sub(r"\s+", " ", item.text).casefold()
@@ -190,6 +215,7 @@ def _ocr_adaptive(image: Image.Image) -> list[Observation]:
             unique.append(item)
         elif item.confidence > unique[duplicate].confidence:
             unique[duplicate] = item
+            
     return unique
 
 
@@ -270,7 +296,11 @@ def _extract(observations: list[Observation], image_id: str) -> tuple[dict[str, 
         default=None,
     )
 
-    mrp_value = float(mrp_match[0].group(1)) if mrp_match else None
+    mrp_raw_val = mrp_match[0].group(1) if mrp_match else None
+    if mrp_raw_val:
+        mrp_raw_val = contextual_correction(mrp_raw_val, 'MRP')
+    mrp_value = float(mrp_raw_val) if mrp_raw_val and mrp_raw_val.replace('.', '', 1).isdigit() else None
+
     qty_value = float(qty_match[0].group(1)) if qty_match else None
     qty_unit = qty_match[0].group(2).lower() if qty_match else None
     if qty_unit in {"kg", "l", "litre", "liter", "litres", "liters"}:
@@ -279,7 +309,10 @@ def _extract(observations: list[Observation], image_id: str) -> tuple[dict[str, 
         qty_unit = qty_unit.lower()
 
     if mrp_match:
-        add("MRP", mrp_match[1], mrp_match[1].confidence)
+        fused = fuse_ocr_results([OCRPass(mrp_match[1].text, mrp_match[1].confidence, "primary")])
+        verified = verify_with_ai("MRP", None, [], [mrp_match[1].text], fused)
+        add("MRP", mrp_match[1], verified["confidence"])
+
     if qty_match:
         add("NET_QTY", qty_match[1], qty_match[1].confidence)
     if manufacturer_match:
